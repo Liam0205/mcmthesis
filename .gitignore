@@ -1,3 +1,11 @@
+## Working
+mcmthesis-demo.tex
+mcmthesis.cls
+mcmthesis.pdf
+
+## Mac OS X
+.DS_Store
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
