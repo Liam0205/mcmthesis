@@ -3,7 +3,7 @@
 % This is file `mcmthesis.dtx'.
 %
 % Copyright (C)
-%     2010 -- 2014 by Zhaoli Wang
+%     2010 -- 2015 by Zhaoli Wang
 %     2014 -- 2015 by Liam Huang
 % -----------------------------------
 % This work may be distributed and/or modified under the
@@ -36,6 +36,8 @@
 \usepackage{booktabs}
 \usepackage{minted}
 \usepackage{multirow}
+\usepackage{amsmath}
+\usemintedstyle{perldoc}
 \AtBeginDocument{\hypersetup{hidelinks}}
 \newcommand{\pkg}[1]{\textsf{#1}}
 \newcommand{\env}[1]{\textsf{#1}}
@@ -43,6 +45,7 @@
 \newcommand{\XeLaTeX}{\hologo{XeLaTeX}}
 \newcommand{\mem}[1]{\textcolor{blue}{\kaishu #1}}
 \newcommand{\file}[1]{\textsf{#1}}
+\newcommand{\path}{\file}
 \begin{document}
   \DocInput{\jobname.dtx}
 \end{document}
@@ -78,23 +81,38 @@
 %   \makebox[0pt][l]{\hspace{1.5cm}\hyperlink{English}%
 %     {\large$ \to $ English Version}}
 % }
-% \author{黄晨成 \\ \texttt{liamhuang0205+\jobname@gmail.com}}
+% \author{王昭礼 \\ \texttt{343083553@qq.com}\and 黄晨成 \\ \texttt{liamhuang0205+\jobname@gmail.com}}
 % \date{\filedate}
 %
 % \maketitle
 %
-% \title{\hypertarget{English}{%
-%   The \textsf{\jobname} class\thanks{This Document
-%   corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}%
-%   \makebox[0pt][l]{\hspace{1.5cm}\hyperlink{Chinese}{\large$ \to $ 中文版}}
-% }
-% \author{Liam Huang \\ \texttt{liamhuang0205+\jobname@gmail.com}}
-% \date{\filedate}
-%
-% \maketitle
+% \begin{abstract}
+%   这份模板是美国大学生数学建模竞赛（MCM/ICM）的论文模板。模板遵循赛事官方的要求，设置了
+%   页眉页脚、字体和控制页等内容。本文档对模板的使用做出了说明。
+% \end{abstract}
 %
 % \section{模板介绍}
-% \section{安装}
+%
+% 这份模板最早由王昭礼设计，并在往年参赛者的建议下不断改进。2014 年年初，黄晨成接手模板，
+% 用 key-value 语法重构了文档选项，并修复了一些 bug。2015 年年初，黄晨成将模板使用
+% \pkg{DocStrip} 的语法重构，并上传至 CTAN。
+%
+% \section{安装说明}
+%
+% \subsection{下载}
+%
+% 你可以到项目主页下载模板的最新版本，也可以关注 \href{http://latexstudio.net/}
+% {\LaTeX Studio} 的相关更新，除去项目主页之外，不再维护任何镜像。
+%
+% \begin{quote}
+%   \url{https://gitcafe.com/ChinaTeX/mcmthesis}
+% \end{quote}
+%
+% 此外，文档类也已上传至 CTAN，你可以在 \TeX{} Live 等发行版的宏包管理器中下载。
+%
+% \subsection{安装}
+%
+% 我们以 \path{SOURCE} 代表你下载的源文件目录，在终端下执行以下命令。
 % \iffalse
 %<*internal>
 % \fi
@@ -109,6 +127,230 @@ xelatex mcmthesis-demo.tex
 % \iffalse
 %</internal>
 % \fi
+%
+% 你可以将生成的 \file{mcmthesis.cls} 拷贝至 \path{TEXMF/tex/latex/mcmthesis/}
+% 目录，将 \file{mcmthesis.dtx} 和 \file{mcmthesis.ins} 拷贝至
+% \path{TEXMF/source/latex/mcmthesis/}，将 \file{mcmthesis.pdf}、
+% \file{mcmthesis-demo.tex}、\file{mcmthesis-demo.pdf}、\file{figures/}
+% 和 \file{code/} 拷贝至 \path{TEXMF/doc/latex/mcmthesis/}，然后在终端
+% 执行 \verb|texhash|；也可以将 \file{mcmthesis.cls} 放在当前目录直接使用。
+%
+% 生成的 \file{mcmthesis-demo.tex} 是一个示例文件，你可以参照这个文件来构建你的论文；
+% 也可以直接修改这个文件。
+%
+% \section{使用说明}
+% \subsection{依赖}
+% \pkg{mcmthesis} 依赖于以下宏包，这些宏包在常见的 \TeX{} 发行版中都已包含，
+% 在安装使用之前，请确认你的 \TeX{} 发行版中正确安装了这些宏包。
+% \begin{longtabu}to 0.9\linewidth{*4{X[cm]}}
+%   \toprule
+%   \pkg{kvoptions} & \pkg{etoolbox} & \pkg{fancyhdr} & \pkg{fancybox} \\
+%   \pkg{ifthen} & \pkg{lastpage} & \pkg{listings} & \pkg{appendix} \\
+%   \pkg{amsmath} & \pkg{amssymb} & \pkg{amsfonts} & \pkg{amsbsy} \\
+%   \pkg{bm} & \pkg{mathrsfs} & \pkg{latexsym} & \pkg{paralist} \\
+%   \pkg{longtable} & \pkg{multirow} & \pkg{hhline} & \pkg{tabularx} \\
+%   \pkg{ctex} & \pkg{xeCJK} & \pkg{CJK} & \pkg{xCJK2uni}\\
+%   \pkg{tabu} & \pkg{minted} & \pkg{longtable} & \pkg{hologo}\\
+%   \pkg{array} & \pkg{flafter} & \pkg{pifont} & \pkg{calc} \\
+%   \pkg{colortbl} & \pkg{booktabs} & \pkg{geometry} & \pkg{fontenc}\\
+%   \pkg{berasans} & \pkg{hyperref} & \pkg{ifpdf} & \pkg{ifxetex}\\
+%   \pkg{graphicx} & \pkg{epstopdf} & \pkg{bmpsize} & \pkg{xcolor}\\
+%   \pkg{longtable} & \pkg{tabu} & \pkg{hologo} & \pkg{palatino}\\
+%   \pkg{mwe}\\
+%   \bottomrule
+% \end{longtabu}
+% 如果你尚未安装这些宏包，可以启动你的 \TeX{} 发行版的宏包管理器
+% 来安装；或者到 \url{http://www.ctan.org} 上搜索下载并安装。
+%
+% \subsection{选项}
+% \pkg{mcmthesis} 有三个选项：
+% \begin{description}
+%   \item [tcn] 队伍控制号码，接受一个字符串作为值；输入的值将显示在控制页上和
+%     每一页的页眉上；默认为 \texttt{0000}。
+%   \item [sheet] 布尔值；为真时将输出控制页，否则不输出；默认为 \texttt{true}。
+%   \item [abstract] 布尔值；为真时将在标题页输出摘要和关键词，否则不输出；默认值为
+%     \texttt{true}。
+% \end{description}
+%
+% 注意，模板提供了 \env{keywords} 环境。该环境的内容只在标题页的摘要下输出，不会在控制页
+% 的摘要下输出。因此，若 \texttt{abstract = false}，则不会输出关键词。
+%
+% \subsection{题号}
+%
+% 模板定义了 \cs{problem}\marg{题号} 命令，用以选择题号。
+%
+% \subsection{编译方式}
+%
+% 模板支持多种编译方式：
+% \begin{itemize}
+%   \item \XeLaTeX \textbf{这是推荐的方式}；
+%   \item pdf\LaTeX；
+%   \item \LaTeX{} + DVIPDFMx。
+% \end{itemize}
+%
+% \subsection{中文支持}
+%
+% 由于 MCM/ICM 要求以英文写作，所以模板没有内建的中文支持。如果你在文章中需要使用个别中文
+% 字符，可以自行使用合适中文支持方式。
+%
+% 对于 \XeLaTeX{} 来说，可以使用 \pkg{xeCJK} 宏包。
+% \iffalse
+%<*internal>
+% \fi
+\begin{minted}{tex}
+\usepackage{xeCJK}
+\setCJkmainfont{SimSun}
+\end{minted}
+% \iffalse
+%</internal>
+% \fi
+% 这里，Mac OS X 的用户可以使用 \texttt{STSong} 来代替 \texttt{SimSun}；
+% Linux 用户则可以使用 \texttt{FandolSong}。
+%
+% 对于 pdf\LaTeX{} 和 \LaTeX{} + DVIPDFMx 来说，可以使用 \pkg{zhmCJK} 宏包。
+% \iffalse
+%<*internal>
+% \fi
+\begin{minted}{tex}
+\usepackage{zhmCJK}
+\setCJkmainfont{SimSun.ttc}
+\end{minted}
+% \iffalse
+%</internal>
+% \fi
+% 对 Mac OS X 和 Linux 的说明同上。
+%
+%
+%
+% \title{\hypertarget{English}{%
+%   The \textsf{\jobname} class\thanks{This Document
+%   corresponds to \textsf{\jobname}~\fileversion, dated \filedate.}}%
+%   \makebox[0pt][l]{\hspace{1.5cm}\hyperlink{Chinese}{\large$ \to $ 中文版}}
+% }
+% \author{Zhaoli Wang \\ \texttt{\texttt{343083553@qq.com}}\and Liam Huang \\ \texttt{liamhuang0205+\jobname@gmail.com}}
+% \date{\filedate}
+%
+% \maketitle
+%
+% \begin{abstract}
+%   This template is designed for MCM/ICM. The template configured fonts,
+%   header and footer and control sheet style, accroding to the requirements
+%   of COMAP. This document desicribes the template.
+% \end{abstract}
+%
+% \section{Introduction}
+%
+% This template was designed by Zhaoli Wang first, and was improved by him
+% following the suggestions from contest takers. In the beginning of the year
+% 2014, Liam Huang redesigned it, by using key-value syntax, and fixed known
+% bugs. Liam reimplemented it at the begining of the year 2015,
+% by \pkg{DocStrip}, and uploaded it to CTAN.
+%
+% \section{Installation Guide}
+%
+% \subsection{Download}
+%
+% You could find the latest version of this tamplate at the project homepage,
+% as well as the websit \href{http://latexstudio.net/}{\LaTeX Studio}. We will
+% not maintain any other mirror.
+%
+% \begin{quote}
+%   \url{https://gitcafe.com/ChinaTeX/mcmthesis}
+% \end{quote}
+%
+% Moreover, this template had been uploaded to CTAN, so that it could
+% be managed by the package manager of your distribution, such as \TeX\ Live.
+%
+% \subsection{Installation}
+%
+% We denote \path{SOURCE} as the folder, who contains the file you've
+% just downloaded. Execute these command in the terminal.
+% \iffalse
+%<*internal>
+% \fi
+\begin{minted}{sh}
+cd SOURCE
+xelatex mcmthesis.ins
+xelatex -shell-escape mcmthesis.dtx
+xelatex -shell-escape mcmthesis.dtx
+xelatex mcmthesis-demo.tex
+xelatex mcmthesis-demo.tex
+\end{minted}
+% \iffalse
+%</internal>
+% \fi
+%
+% To finish the installation, you could copy \file{mcmthesis.cls} to
+% \path{TEXMF/tex/latex/mcmthesis/}, copy \file{mcmthesis.dtx}
+% and \file{mcmthesis.ins} to \path{TEXMF/source/latex/mcmthesis/},
+% copy \file{mcmthesis.pdf}, \file{mcmthesis-demo.tex},
+% \file{mcmthesis-demo.pdf}, \file{figures/} and \file{code/} to
+% \path{TEXMF/doc/latex/mcmthesis/}, and then run \verb|texhash| in your
+% terminal; you could also put \file{mcmthesis.cls} in the same folder of
+% the master file.
+%
+% \file{mcmthesis-demo.tex} is a generated demo file, you could write the
+% manuscript of you paper by mimicing this file; you may also modify this
+% file to build your paper.
+%
+% \section{Usage}
+% \subsection{Dependence}
+% The \pkg{mcmthesis} class depends on the following pakcages.
+% These packages has been installed in common \TeX{} distribution.
+% Before installation, please make sure that you have installed these
+% packages correctly.
+% \begin{longtabu}to 0.9\linewidth{*4{X[cm]}}
+%   \toprule
+%   \pkg{kvoptions} & \pkg{etoolbox} & \pkg{fancyhdr} & \pkg{fancybox} \\
+%   \pkg{ifthen} & \pkg{lastpage} & \pkg{listings} & \pkg{appendix} \\
+%   \pkg{amsmath} & \pkg{amssymb} & \pkg{amsfonts} & \pkg{amsbsy} \\
+%   \pkg{bm} & \pkg{mathrsfs} & \pkg{latexsym} & \pkg{paralist} \\
+%   \pkg{longtable} & \pkg{multirow} & \pkg{hhline} & \pkg{tabularx} \\
+%   \pkg{ctex} & \pkg{xeCJK} & \pkg{CJK} & \pkg{xCJK2uni}\\
+%   \pkg{tabu} & \pkg{minted} & \pkg{longtable} & \pkg{hologo}\\
+%   \pkg{array} & \pkg{flafter} & \pkg{pifont} & \pkg{calc} \\
+%   \pkg{colortbl} & \pkg{booktabs} & \pkg{geometry} & \pkg{fontenc}\\
+%   \pkg{berasans} & \pkg{hyperref} & \pkg{ifpdf} & \pkg{ifxetex}\\
+%   \pkg{graphicx} & \pkg{epstopdf} & \pkg{bmpsize} & \pkg{xcolor}\\
+%   \pkg{longtable} & \pkg{tabu} & \pkg{hologo} & \pkg{palatino}\\
+%   \pkg{mwe}\\
+%   \bottomrule
+% \end{longtabu}
+% If you haven't install these packages, you could execute the package
+% manager of your distribution and install them; you could also download
+% them from \url{http://www.ctan.org}.
+%
+% \subsection{Options}
+% \pkg{mcmthesis} has three options：
+% \begin{description}
+%   \item [tcn] The team control number, recieves a string as value;
+%     this value will be displayed on control sheet and every page's header.
+%     The default value is \texttt{0000}.
+%   \item [sheet] Bool, true to print the control sheet, default
+%     is \texttt{true}.
+%   \item [abstract] Bool, true to print the abstract on the titlepage,
+%     default is \texttt{true}.
+% \end{description}
+%
+% Note that the template provides the \env{keywords} environment, whose
+% contents will only be displayed after the abstract on titlepage, and
+% will not be displayed on the control sheet. Thus, if one set
+% \texttt{abstract = false}, keywords will not be printed.
+%
+% \subsection{Question}
+%
+% The template defines \cs{problem}\marg{question} to choose the question.
+%
+% \subsection{Compilation Workflow}
+%
+% The template supports various kinds of compilation workflow:
+% \begin{itemize}
+%   \item \XeLaTeX \textbf{recommend}；
+%   \item pdf\LaTeX；
+%   \item \LaTeX{} + DVIPDFMx。
+% \end{itemize}
+%
+%
 %
 % \section{The Implementation}
 % \subsection{Basic Information}
@@ -191,7 +433,6 @@ xelatex mcmthesis-demo.tex
   \fi
 \fi
 \RequirePackage{xcolor}
-\definecolor{grey}{rgb}{0.91,0.91,0.91}
 %    \end{macrocode}
 % \subsection{\pkg{hyperref} Settings}
 %    \begin{macrocode}
@@ -208,7 +449,7 @@ xelatex mcmthesis-demo.tex
 % \subsection{Page Layout}
 % Setting paper size and margin sep.
 %    \begin{macrocode}
-\geometry{a4paper, margin = 1in}
+\geometry{a4paper, margin = 1.2in}
 %    \end{macrocode}
 %
 % Making the footer and header.
@@ -217,6 +458,11 @@ xelatex mcmthesis-demo.tex
 \fancyhf{}
 \lhead{\small \team}
 \rhead{\small Page \thepage\ of \pageref{LastPage}}
+%    \end{macrocode}
+%
+% Setting \cs{parskip}.
+%    \begin{macrocode}
+\setlength\parskip{.5\baselineskip}
 %    \end{macrocode}
 % \subsection{Redefining TOC}
 %    \begin{macrocode}
@@ -349,7 +595,7 @@ xelatex mcmthesis-demo.tex
     \end{tabularx}\par
 \noindent\rule{\textwidth}{0.5pt}\par
 \begin{center}
-  \textbf{\the\year\  Mathematical Contest in Modeling (MCM) Summary Sheet}\\
+  \textbf{\the\year\ Mathematical Contest in Modeling (MCM) Summary Sheet}\\
 (Attach a copy of this page to each copy of your solution paper.)
 \end{center}
 \par%
@@ -409,11 +655,30 @@ xelatex mcmthesis-demo.tex
 
 This class is designed for the MCM/ICM.
 
+This work is released under the [LaTeX Project Public
+License](http://www.latex-project.org/lppl.txt), v1.3c or later.
+
 ## Installation
+
+This work consists of the file  mcmthesis.dtx, mcmthesis.ins,
+                                figures/, and code/,
+and the derived files           mcmthesis.cls,
+                                mcmthesis-demo.tex,
+                                README,
+                                LICENSE,
+                                mcmthesis.pdf and
+                                mcmthesis-demo.pdf.
+
+To install this class, you should copy `mcmthesis.cls` to
+`TEXMF/tex/latex/mcmthesis/`, copy `mcmthesis.dtx` and `mcmthesis.ins`
+to `TEXMF/source/latex/mcmthesis/` and copy other files to
+`TEXMF/doc/latex/mcmthesis/` and then run `texhash`.
 
 ## Author
 
-Liam Huang
+[Zhaoli Wang][zhaoli]
+
+[Liam Huang][liam-ctan]
 
 Email: liamhuang0205+mcmthesis@gmail.com
 
@@ -421,6 +686,7 @@ If you are interested in the process of development you may observe
 
 <https://github.com/LiamHuang0205/mcmthesis>
 
+[zhaoli]: http://www.latexstudio.net/
 [liam-ctan]: http://www.ctan.org/author/huang-l
 %</readme>
 %<*license>
@@ -436,14 +702,7 @@ The package has status 'maintained': the current maintainer is
 \problem{A}
 \usepackage{palatino}
 \usepackage{mwe}
-\geometry{margin = 1.2in}
-\pagestyle{fancy}
-\fancyhead[OL, EL]{\small \team}
-\fancyhead[OR, ER]{\small Page \thepage\ of \pageref{LastPage}}
-\setlength\parskip{.5\baselineskip}
-\providecommand{\abstractname}{\relax}
-\renewcommand{\abstractname}{Abstract}
-\title{The \LaTeX Template for  MCM Version 5.0}
+\title{The \LaTeX{} Template for MCM Version 5.1.0a}
 \author{\small \href{http://www.latexstudio.net/}
   {\includegraphics[width=7cm]{mcmthesis-logo}}}
 \date{\today}
@@ -455,7 +714,6 @@ keyword1; keyword2
 \end{keywords}
 \end{abstract}
 \maketitle
-\pagestyle{empty}
 \newpage
 % Generate the Table of Contents, if it's needed.
 % \tableofcontents
@@ -612,3 +870,14 @@ some more text \textcolor[rgb]{0.98,0.00,0.00}{\textbf{Input C++ source:}}
 %\fi
 % \Finale
 \endinput
+%%
+%% This work consists of the file  mcmthesis.dtx, mcmthesis.ins,
+%%                                 figures/, and code/,
+%% and the derived files           mcmthesis.cls,
+%%                                 mcmthesis-demo.tex,
+%%                                 README,
+%%                                 LICENSE,
+%%                                 mcmthesis.pdf and
+%%                                 mcmthesis-demo.pdf.
+%%
+%% End of file `mcmthesis.dtx'.

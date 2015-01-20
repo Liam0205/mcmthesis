@@ -5,4 +5,4 @@ xelatex -interaction=batchmode mcmthesis-demo.tex
 xelatex -interaction=batchmode mcmthesis-demo.tex
 mv LICENSE.md LICENSE
 mv README.md README
-open mcmthesis.pdf
+open .
