@@ -1,3 +1,4 @@
+perl adjust_checksum.pl mcmthesis.dtx
 xelatex mcmthesis.ins
 xelatex -interaction=batchmode -shell-escape mcmthesis.dtx
 xelatex -interaction=batchmode -shell-escape mcmthesis.dtx

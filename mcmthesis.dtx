@@ -23,7 +23,7 @@
 % \iffalse
 %<*driver>
 \ProvidesFile{mcmthesis.dtx}
-  [2015/01/19 v5.1.0a Thesis Template For MCM/ICM]
+  [2015/01/19 v5.1.0b Thesis Template For MCM/ICM]
 \documentclass{ltxdoc}
 \EnableCrossrefs
 \CodelineIndex
@@ -52,7 +52,8 @@
 %</driver>
 % \fi
 %
-% \CheckSum{0}
+% \CheckSum{348}
+%
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -199,7 +200,7 @@ xelatex mcmthesis-demo.tex
 % \fi
 \begin{minted}{tex}
 \usepackage{xeCJK}
-\setCJkmainfont{SimSun}
+\setCJKmainfont{SimSun}
 \end{minted}
 % \iffalse
 %</internal>
@@ -213,7 +214,7 @@ xelatex mcmthesis-demo.tex
 % \fi
 \begin{minted}{tex}
 \usepackage{zhmCJK}
-\setCJkmainfont{SimSun.ttc}
+\setCJKmainfont{SimSun.ttc}
 \end{minted}
 % \iffalse
 %</internal>
@@ -251,7 +252,7 @@ xelatex mcmthesis-demo.tex
 % \subsection{Download}
 %
 % You could find the latest version of this tamplate at the project homepage,
-% as well as the websit \href{http://latexstudio.net/}{\LaTeX Studio}. We will
+% as well as the website \href{http://latexstudio.net/}{\LaTeX Studio}. We will
 % not maintain any other mirror.
 %
 % \begin{quote}
@@ -351,16 +352,16 @@ xelatex mcmthesis-demo.tex
 % \end{itemize}
 %
 %
-%
+% \StopEventually{}
 % \section{The Implementation}
 % \subsection{Basic Information}
 %    \begin{macrocode}
 %<*class>
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{mcmthesis}
-  [2015/01/19 v5.1.0a Thesis Template For MCM/ICM]
+  [2015/01/19 v5.1.0b Thesis Template For MCM/ICM]
 \typeout{Thesis Template For MCM/ICM}
-\def\MCMversion{v5.1.0a}
+\def\MCMversion{v5.1.0b}
 %    \end{macrocode}
 % \subsection{Options}
 %
