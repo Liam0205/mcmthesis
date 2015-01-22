@@ -18,9 +18,88 @@
 %
 % The Current Maintainer of this work is Liam Huang.
 %
-% \fi
-%
-% \iffalse
+%<*internal>
+\begingroup
+  \def\temp{LaTeX2e}
+\expandafter\endgroup\ifx\temp\fmtname\else
+\csname fi\endcsname
+%</internal>
+%<*install>
+\input docstrip.tex
+\keepsilent
+\preamble
+
+-----------------------------------
+
+This is a generated file.
+
+Copyright (C)
+    2010 -- 2015 by Zhaoli Wang
+    2014 -- 2015 by Liam Huang
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either version 1.3
+of this license or (at your option) any later version.
+The latest version of this license is in
+  http://www.latex-project.org/lppl.txt
+and version 1.3 or later is part of all distributions of LaTeX
+version 2005/12/01 or later.
+
+This work has the LPPL maintenance status `maintained'.
+
+The Current Maintainer of this work is Liam Huang.
+
+\endpreamble
+\postamble
+
+This work consists of these files \jobname.dtx,
+                                  figures/ and
+                                  code/,
+and the derived files             \jobname.cls,
+                                  \jobname-demo.tex,
+                                  README,
+                                  LICENSE,
+                                  \jobname.pdf and
+                                  \jobname-demo.pdf.
+\endpostamble
+
+\generate{%
+  \usedir{tex/latex/\jobname}%
+  \file{\jobname.cls}{\from{\jobname.dtx}{class}}%
+  \usedir{doc/latex/\jobname}%
+  \file{\jobname-demo.tex}{\from{\jobname.dtx}{demo}}%
+  \nopreamble\nopostamble
+  \file{README.tex}{\from{\jobname.dtx}{readme}}%
+  \file{LICENSE.tex}{\from{\jobname.dtx}{license}}%
+}
+
+\Msg{*************************************************************}
+\Msg{*}
+\Msg{* To finish the installation you have to}
+\Msg{*}
+\Msg{* produce the user manual run the file \jobname.dtx}
+\Msg{* through XeLaTeX --shell-escape,}
+\Msg{*}
+\Msg{* produce the demo file run the file \jobname-demo.tex}
+\Msg{* through XeLaTeX,}
+\Msg{*}
+\Msg{* move the following file into a directory searched}
+\Msg{* \space\space by TeX:}
+\Msg{*}
+\Msg{* \space\space\jobname.cls to TEXMF/tex/latex/mcmthesis/,}
+\Msg{* \space\space\jobname.dtx to TEXMF/source/latex/mcmthesis/,}
+\Msg{* \space\space other files\space\space\space to
+  TEXMF/doc/latex/mcmthesis/,}
+\Msg{*}
+\Msg{* and then run texhash.}
+\Msg{*}
+\Msg{* Happy TeXing!}
+\Msg{*************************************************************}
+\endbatchfile
+%</install>
+%<*internal>
+\fi
+%</internal>
 %<*driver>
 \ProvidesFile{mcmthesis.dtx}
   [2015/01/19 v5.1.0b Thesis Template For MCM/ICM]
@@ -45,7 +124,7 @@
 \newcommand{\XeLaTeX}{\hologo{XeLaTeX}}
 \newcommand{\mem}[1]{\textcolor{blue}{\kaishu #1}}
 \newcommand{\file}[1]{\textsf{#1}}
-\newcommand{\path}{\file}
+\newcommand{\path}[1]{\textsf{#1}}
 \begin{document}
   \DocInput{\jobname.dtx}
 \end{document}
@@ -251,7 +330,7 @@ xelatex mcmthesis-demo.tex
 %
 % \subsection{Download}
 %
-% You could find the latest version of this tamplate at the project homepage,
+% You could find the latest version of this template at the project homepage,
 % as well as the website \href{http://latexstudio.net/}{\LaTeX Studio}. We will
 % not maintain any other mirror.
 %
@@ -651,59 +730,13 @@ xelatex mcmthesis-demo.tex
 %<class>\endinput
 %    \end{macrocode}
 % \iffalse
-%<*readme>
-# The `mcmthesis` Class
-
-This class is designed for the MCM/ICM.
-
-This work is released under the [LaTeX Project Public
-License](http://www.latex-project.org/lppl.txt), v1.3c or later.
-
-## Installation
-
-This work consists of the file  mcmthesis.dtx, mcmthesis.ins,
-                                figures/, and code/,
-and the derived files           mcmthesis.cls,
-                                mcmthesis-demo.tex,
-                                README,
-                                LICENSE,
-                                mcmthesis.pdf and
-                                mcmthesis-demo.pdf.
-
-To install this class, you should copy `mcmthesis.cls` to
-`TEXMF/tex/latex/mcmthesis/`, copy `mcmthesis.dtx` and `mcmthesis.ins`
-to `TEXMF/source/latex/mcmthesis/` and copy other files to
-`TEXMF/doc/latex/mcmthesis/` and then run `texhash`.
-
-## Author
-
-[Zhaoli Wang][zhaoli]
-
-[Liam Huang][liam-ctan]
-
-Email: liamhuang0205+mcmthesis@gmail.com
-
-If you are interested in the process of development you may observe
-
-<https://github.com/LiamHuang0205/mcmthesis>
-
-[zhaoli]: http://www.latexstudio.net/
-[liam-ctan]: http://www.ctan.org/author/huang-l
-%</readme>
-%<*license>
-Released under the [LaTeX Project Public
-License](http://www.latex-project.org/lppl.txt), v1.3c or later.
-
-The package has status 'maintained': the current maintainer is
-[Liam Huang](liamhuang0205+mcmthesis@gmail.com).
-%</license>
 %<*demo>
 %!TEX program = xelatex
 \documentclass[tcn = 0000, sheet = true, abstract = true]{mcmthesis}
 \problem{A}
 \usepackage{palatino}
 \usepackage{mwe}
-\title{The \LaTeX{} Template for MCM Version 5.1.0a}
+\title{The \LaTeX{} Template for MCM Version 5.1.0b}
 \author{\small \href{http://www.latexstudio.net/}
   {\includegraphics[width=7cm]{mcmthesis-logo}}}
 \date{\today}
@@ -868,7 +901,59 @@ some more text \textcolor[rgb]{0.98,0.00,0.00}{\textbf{Input C++ source:}}
 \end{document}
 
 %</demo>
-%\fi
+%<*readme>
+# The `mcmthesis` Class
+
+This class is designed for the MCM/ICM.
+
+This work is released under the [LaTeX Project Public
+License](http://www.latex-project.org/lppl.txt), v1.3c or later.
+
+## Installation
+
+This work consists of the file mcmthesis.dtx,
+                               figures/, and
+                               code/,
+and the derived files          mcmthesis.cls,
+                               mcmthesis-demo.tex,
+                               README,
+                               LICENSE,
+                               mcmthesis.pdf and
+                               mcmthesis-demo.pdf.
+
+To install this class, you should
+    move `mcmthesis.cls` to `TEXMF/tex/latex/mcmthesis/`,
+    move `mcmthesis.dtx` to `TEXMF/source/latex/mcmthesis/`,
+    move other files     to `TEXMF/doc/latex/mcmthesis/` and then
+    run `texhash`.
+
+## Author
+
+[Zhaoli Wang][zhaoli]
+
+Email: 343083553@qq.com
+
+[Liam Huang][liam-ctan]
+
+Email: liamhuang0205+mcmthesis@gmail.com
+
+## Project Page
+
+If you are interested in the process of development you may observe
+
+<https://github.com/LiamHuang0205/mcmthesis>
+
+[zhaoli]: http://www.latexstudio.net/
+[liam-ctan]: http://www.ctan.org/author/huang-l
+%</readme>
+%<*license>
+Released under the [LaTeX Project Public License]
+(http://www.latex-project.org/lppl.txt), v1.3c or later.
+
+The package has status 'maintained': the current maintainer is
+[Liam Huang](liamhuang0205+mcmthesis@gmail.com).
+%</license>
+% \fi
 % \Finale
 \endinput
 %%
