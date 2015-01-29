@@ -72,28 +72,27 @@ and the derived files             \jobname.cls,
   \file{README.tex}{\from{\jobname.dtx}{readme}}%
   \file{LICENSE.tex}{\from{\jobname.dtx}{license}}%
 }
-
+\obeyspaces
 \Msg{*************************************************************}
-\Msg{*}
-\Msg{* To finish the installation you have to}
-\Msg{*}
-\Msg{* produce the user manual run the file \jobname.dtx}
-\Msg{* through XeLaTeX --shell-escape,}
-\Msg{*}
-\Msg{* produce the demo file run the file \jobname-demo.tex}
-\Msg{* through XeLaTeX,}
-\Msg{*}
-\Msg{* move the following file into a directory searched}
-\Msg{* \space\space by TeX:}
-\Msg{*}
-\Msg{* \space\space\jobname.cls to TEXMF/tex/latex/mcmthesis/,}
-\Msg{* \space\space\jobname.dtx to TEXMF/source/latex/mcmthesis/,}
-\Msg{* \space\space other files\space\space\space to
-  TEXMF/doc/latex/mcmthesis/,}
-\Msg{*}
-\Msg{* and then run texhash.}
-\Msg{*}
-\Msg{* Happy TeXing!}
+\Msg{*                                                           *}
+\Msg{* To finish the installation you have to                    *}
+\Msg{*                                                           *}
+\Msg{* produce the user manual run the file \jobname.dtx        *}
+\Msg{* through XeLaTeX --shell-escape,                           *}
+\Msg{*                                                           *}
+\Msg{* produce the demo file run the file \jobname-demo.tex     *}
+\Msg{* through XeLaTeX,                                          *}
+\Msg{*                                                           *}
+\Msg{* move the following file into a directory searched         *}
+\Msg{*    by TeX:                                                *}
+\Msg{*                                                           *}
+\Msg{*   \jobname.cls to TEXMF/tex/latex/mcmthesis/,            *}
+\Msg{*   \jobname.dtx to TEXMF/source/latex/mcmthesis/,         *}
+\Msg{*   other files   to TEXMF/doc/latex/mcmthesis/,            *}
+\Msg{*                                                           *}
+\Msg{* and then run texhash.                                     *}
+\Msg{*                                                           *}
+\Msg{* Happy TeXing!                                             *}
 \Msg{*************************************************************}
 \endbatchfile
 %</install>
@@ -102,7 +101,7 @@ and the derived files             \jobname.cls,
 %</internal>
 %<*driver>
 \ProvidesFile{mcmthesis.dtx}
-  [2015/01/19 v5.1.0b Thesis Template For MCM/ICM]
+  [2015/01/29 v5.1.0c Thesis Template For MCM/ICM]
 \documentclass{ltxdoc}
 \EnableCrossrefs
 \CodelineIndex
@@ -131,7 +130,7 @@ and the derived files             \jobname.cls,
 %</driver>
 % \fi
 %
-% \CheckSum{348}
+% \CheckSum{368}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -243,17 +242,24 @@ xelatex mcmthesis-demo.tex
 % 来安装；或者到 \url{http://www.ctan.org} 上搜索下载并安装。
 %
 % \subsection{选项}
-% \pkg{mcmthesis} 有三个选项：
+% \pkg{mcmthesis} 有六个选项，用来控制模板的行为：
 % \begin{description}
 %   \item [tcn] 队伍控制号码，接受一个字符串作为值；输入的值将显示在控制页上和
 %     每一页的页眉上；默认为 \texttt{0000}。
 %   \item [sheet] 布尔值；为真时将输出控制页，否则不输出；默认为 \texttt{true}。
+%   \item [titleinsheet] 布尔值；为真时将在控制页输出标题，否则不输出；
+%     默认为 \texttt{false}。
+%   \item [keywordsinsheet] 布尔值；为真时将在控制页输出关键字，否则不输出；
+%     默认为 \texttt{false}。
+%   \item [titlepage] 布尔值；为真时将输出标题页，否则不输出；默认为 \texttt{true}。
 %   \item [abstract] 布尔值；为真时将在标题页输出摘要和关键词，否则不输出；默认值为
 %     \texttt{true}。
 % \end{description}
 %
-% 注意，模板提供了 \env{keywords} 环境。该环境的内容只在标题页的摘要下输出，不会在控制页
-% 的摘要下输出。因此，若 \texttt{abstract = false}，则不会输出关键词。
+% 注意，\texttt{titleinsheet} 和 \texttt{keywordsinsheet} 的效果受 \texttt{sheet}
+% 的影响。若 \texttt{sheet = false}，则不论前二者的真假，均不会在控制页上输出标题和/或
+% 关键字。另一方面，若 \texttt{sheet = true}，则摘要部分总是会出现在控制页。
+% \texttt{abstract} 与 \texttt{titlepage} 选项的关系于前述类似。
 %
 % \subsection{题号}
 %
@@ -401,21 +407,31 @@ xelatex mcmthesis-demo.tex
 % them from \url{http://www.ctan.org}.
 %
 % \subsection{Options}
-% \pkg{mcmthesis} has three options：
+% \pkg{mcmthesis} has six options that are designed to control the behaviour
+% of the template.
 % \begin{description}
 %   \item [tcn] The team control number, recieves a string as value;
 %     this value will be displayed on control sheet and every page's header.
 %     The default value is \texttt{0000}.
 %   \item [sheet] Bool, true to print the control sheet, default
 %     is \texttt{true}.
+%   \item [titleinsheet] Bool, true to print the title in the control sheet,
+%     default is \texttt{false}.
+%   \item [keywordsinsheet] Bool, true to print keywords in the control sheet,
+%     default is \texttt{false}.
+%   \item [titlepage] Bool, true to print the titlepage,
+%     default is \texttt{true}.
 %   \item [abstract] Bool, true to print the abstract on the titlepage,
 %     default is \texttt{true}.
 % \end{description}
 %
-% Note that the template provides the \env{keywords} environment, whose
-% contents will only be displayed after the abstract on titlepage, and
-% will not be displayed on the control sheet. Thus, if one set
-% \texttt{abstract = false}, keywords will not be printed.
+% Note that the effect of \texttt{titleinsheet} and \texttt{keywordsinsheet}
+% are under the control of the option \texttt{sheet}, that is, if
+% \texttt{sheet} is set to \texttt{false}, title and/or keywords will not be
+% printed on the control sheet, whatever the value of these two options are.
+% On the other hand, the abstract will always be printed on the control sheet,
+% if the \texttt{sheet} is set to \texttt{true}. The relationship between
+% \texttt{abstract} and \texttt{titlepage} is similar to that just mentioned.
 %
 % \subsection{Question}
 %
@@ -438,9 +454,9 @@ xelatex mcmthesis-demo.tex
 %<*class>
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{mcmthesis}
-  [2015/01/19 v5.1.0b Thesis Template For MCM/ICM]
+  [2015/01/29 v5.1.0c Thesis Template For MCM/ICM]
 \typeout{Thesis Template For MCM/ICM}
-\def\MCMversion{v5.1.0b}
+\def\MCMversion{v5.1.0c}
 %    \end{macrocode}
 % \subsection{Options}
 %
@@ -456,6 +472,12 @@ xelatex mcmthesis-demo.tex
 %    \begin{macrocode}
 \DeclareBoolOption[true]{sheet}
 \DeclareComplementaryOption{nosheet}{sheet}
+\DeclareBoolOption[false]{titleinsheet}
+\DeclareComplementaryOption{notitleinsheet}{titleinsheet}
+\DeclareBoolOption[false]{keywordsinsheet}
+\DeclareComplementaryOption{nokeywordsinsheet}{keywordsinsheet}
+\DeclareBoolOption[true]{titlepage}
+\DeclareComplementaryOption{notitlepage}{titlepage}
 \DeclareBoolOption[true]{abstract}
 \DeclareComplementaryOption{noabstract}{abstract}
 \DeclareStringOption[0000]{tcn}[0000]
@@ -588,36 +610,17 @@ xelatex mcmthesis-demo.tex
 %    \end{macrocode}
 % \subsection{Designing Sheets and their Relations}
 % Redefining \cs{@maketitle}, which is executed by \cs{maketitle}.
-% \cs{@maketitle} will check if the control sheet and abstract (on title
-% page) should be printed.
-%
-% Note that the keywords will only be printed on the titlepage.
+% \cs{@maketitle} will check if the control sheet and titlepage should
+% be printed.
 %    \begin{macrocode}
 \def\@maketitle{%
-  \ifMCM@opt@sheet%
-  \makesheet%
+  \ifMCM@opt@sheet
+  \makesheet
   \fi
   \newpage
-  \null
-  \vskip 2em%
-  \begin{center}%
-  \let \footnote \thanks
-    {\LARGE \@title \par}%
-    \vskip 1.5em%
-    {\large
-      \lineskip .5em%
-      \begin{tabular}[t]{c}%
-        \@author
-      \end{tabular}\par}%
-    \vskip 1em%
-    {\large \@date}%
-  \end{center}%
-  \par
-  \vskip 1.5em%
-  \ifMCM@opt@abstract%
-  \make@abstract%
-  \fi%
-}
+  \ifMCM@opt@titlepage
+  \MCM@maketitle
+  \fi}
 %    \end{macrocode}
 %
 % Making the \env{abstract} environment.
@@ -678,11 +681,42 @@ xelatex mcmthesis-demo.tex
   \textbf{\the\year\ Mathematical Contest in Modeling (MCM) Summary Sheet}\\
 (Attach a copy of this page to each copy of your solution paper.)
 \end{center}
-\par%
+\ifMCM@opt@titleinsheet
+  \centerline{\normalfont \LARGE \@title}
+\fi
 \vskip 1.5em%
-\centerline{\large\bfseries\abstractname}
-\noindent\usebox\@abstract%
+\ifMCM@opt@keywordsinsheet
+  \make@abstract
+\else
+  \centerline{\large\bfseries\abstractname}
+  \noindent\usebox\@abstract
+\fi
 \endgroup}
+%    \end{macrocode}
+%
+% Defining the \cs{MCM@maketitle}
+%    \begin{macrocode}
+\newcommand{\MCM@maketitle}{%
+  \null
+  \vskip 2em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip 1.5em%
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+    \vskip 1em%
+    {\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1.5em%
+  \ifMCM@opt@abstract%
+  \make@abstract%
+  \fi%
+}
 %    \end{macrocode}
 % \subsection{Mathematics}
 % Theorems.
@@ -732,7 +766,10 @@ xelatex mcmthesis-demo.tex
 % \iffalse
 %<*demo>
 %!TEX program = xelatex
-\documentclass[tcn = 0000, sheet = true, abstract = true]{mcmthesis}
+\documentclass[tcn = 0000,
+        sheet = true, titleinsheet = true, keywordsinsheet = true,
+        titlepage = true, abstract = true]
+        {mcmthesis}
 \problem{A}
 \usepackage{palatino}
 \usepackage{mwe}
