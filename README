@@ -18,6 +18,11 @@ and the derived files          mcmthesis.cls,
                                mcmthesis-demo.pdf.
 
 To install this class, you should
+    compile `mcmthesis.dtx` with `xetex mcmthesis.dtx`,
+    compile `mcmthesis.dtx` with `xelatex -shell-escape mcmthesis.dtx` twice,
+    compile `mcmthesis-demo.tex` with `xelatex mcmthesis-demo.tex` twice,
+    rename `README.tex` and `LICENSE.tex` respectively to
+      `README` and `LICENSE`,
     move `mcmthesis.cls` to `TEXMF/tex/latex/mcmthesis/`,
     move `mcmthesis.dtx` to `TEXMF/source/latex/mcmthesis/`,
     move other files     to `TEXMF/doc/latex/mcmthesis/` and then

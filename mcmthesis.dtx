@@ -101,7 +101,7 @@ and the derived files             \jobname.cls,
 %</internal>
 %<*driver>
 \ProvidesFile{mcmthesis.dtx}
-  [2015/01/29 v5.1.0c Thesis Template For MCM/ICM]
+  [2015/02/05 v5.1.0d Thesis Template For MCM/ICM]
 \documentclass{ltxdoc}
 \EnableCrossrefs
 \CodelineIndex
@@ -124,13 +124,14 @@ and the derived files             \jobname.cls,
 \newcommand{\mem}[1]{\textcolor{blue}{\kaishu #1}}
 \newcommand{\file}[1]{\textsf{#1}}
 \newcommand{\path}[1]{\textsf{#1}}
+\newcommand{\mopt}{\textsf}
 \begin{document}
   \DocInput{\jobname.dtx}
 \end{document}
 %</driver>
 % \fi
 %
-% \CheckSum{368}
+% \CheckSum{344}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -167,7 +168,7 @@ and the derived files             \jobname.cls,
 %
 % \begin{abstract}
 %   这份模板是美国大学生数学建模竞赛（MCM/ICM）的论文模板。模板遵循赛事官方的要求，设置了
-%   页眉页脚、字体和控制页等内容。本文档对模板的使用做出了说明。
+%   页眉页脚、字体和摘要页等内容。本文档对模板的使用做出了说明。
 % \end{abstract}
 %
 % \section{模板介绍}
@@ -197,7 +198,7 @@ and the derived files             \jobname.cls,
 % \fi
 \begin{minted}{sh}
 cd SOURCE
-xelatex mcmthesis.ins
+xetex mcmthesis.dtx
 xelatex -shell-escape mcmthesis.dtx
 xelatex -shell-escape mcmthesis.dtx
 xelatex mcmthesis-demo.tex
@@ -208,7 +209,7 @@ xelatex mcmthesis-demo.tex
 % \fi
 %
 % 你可以将生成的 \file{mcmthesis.cls} 拷贝至 \path{TEXMF/tex/latex/mcmthesis/}
-% 目录，将 \file{mcmthesis.dtx} 和 \file{mcmthesis.ins} 拷贝至
+% 目录，将 \file{mcmthesis.dtx} 拷贝至
 % \path{TEXMF/source/latex/mcmthesis/}，将 \file{mcmthesis.pdf}、
 % \file{mcmthesis-demo.tex}、\file{mcmthesis-demo.pdf}、\file{figures/}
 % 和 \file{code/} 拷贝至 \path{TEXMF/doc/latex/mcmthesis/}，然后在终端
@@ -235,21 +236,48 @@ xelatex mcmthesis-demo.tex
 %   \pkg{berasans} & \pkg{hyperref} & \pkg{ifpdf} & \pkg{ifxetex}\\
 %   \pkg{graphicx} & \pkg{epstopdf} & \pkg{bmpsize} & \pkg{xcolor}\\
 %   \pkg{longtable} & \pkg{tabu} & \pkg{hologo} & \pkg{palatino}\\
-%   \pkg{mwe}\\
+%   \pkg{mwe} & \pkg{environ}\\
 %   \bottomrule
 % \end{longtabu}
 % 如果你尚未安装这些宏包，可以启动你的 \TeX{} 发行版的宏包管理器
 % 来安装；或者到 \url{http://www.ctan.org} 上搜索下载并安装。
 %
 % \subsection{选项}
-% \pkg{mcmthesis} 有六个选项，用来控制模板的行为：
+% \pkg{mcmthesis} 定义了一些选项，用来控制模板的行为。
+% 你可以在载入文档类的时候指定这些选项的值，例如
+% \iffalse
+%<*internal>
+% \fi
+\begin{minted}{tex}
+\documentclass[tcn = 12345, problem = B, titlepage = false]{mcmthesis}
+\end{minted}
+% \iffalse
+%</internal>
+% \fi
+%￼\DescribeMacro{\mcmsetup}你也可以使用 \cs{mcmsetup}^^A
+% \marg{key-value 列表} 来指定这些值，例如
+% \iffalse
+%<*internal>
+% \fi
+\begin{minted}{tex}
+\documentclass{mcmthesis}
+\mcmsetup{tcn = 12345, problem = B, titlepage = false}
+\end{minted}
+% \iffalse
+%</internal>
+% \fi
+% 两种做法效果等同。
+%
+% 当前，\pkg{mcmthesis} 有七个选项：
 % \begin{description}
-%   \item [tcn] 队伍控制号码，接受一个字符串作为值；输入的值将显示在控制页上和
+%   \item [tcn] 队伍控制号码，接受一个字符串作为值；输入的值将显示在摘要页上和
 %     每一页的页眉上；默认为 \texttt{0000}。
-%   \item [sheet] 布尔值；为真时将输出控制页，否则不输出；默认为 \texttt{true}。
-%   \item [titleinsheet] 布尔值；为真时将在控制页输出标题，否则不输出；
+%   \item [problem] 选题，接受一个字符串作为值；输入的值将显示在摘要页上；
+%     默认为 \texttt{A}。
+%   \item [sheet] 布尔值；为真时将输出摘要页，否则不输出；默认为 \texttt{true}。
+%   \item [titleinsheet] 布尔值；为真时将在摘要页输出标题，否则不输出；
 %     默认为 \texttt{false}。
-%   \item [keywordsinsheet] 布尔值；为真时将在控制页输出关键字，否则不输出；
+%   \item [keywordsinsheet] 布尔值；为真时将在摘要页输出关键字，否则不输出；
 %     默认为 \texttt{false}。
 %   \item [titlepage] 布尔值；为真时将输出标题页，否则不输出；默认为 \texttt{true}。
 %   \item [abstract] 布尔值；为真时将在标题页输出摘要和关键词，否则不输出；默认值为
@@ -257,13 +285,23 @@ xelatex mcmthesis-demo.tex
 % \end{description}
 %
 % 注意，\texttt{titleinsheet} 和 \texttt{keywordsinsheet} 的效果受 \texttt{sheet}
-% 的影响。若 \texttt{sheet = false}，则不论前二者的真假，均不会在控制页上输出标题和/或
-% 关键字。另一方面，若 \texttt{sheet = true}，则摘要部分总是会出现在控制页。
+% 的影响。若 \texttt{sheet = false}，则不论前二者的真假，均不会在摘要页上输出标题和/或
+% 关键字。另一方面，若 \texttt{sheet = true}，则摘要部分总是会出现在摘要页。
 % \texttt{abstract} 与 \texttt{titlepage} 选项的关系于前述类似。
 %
 % \subsection{题号}
 %
-% 模板定义了 \cs{problem}\marg{题号} 命令，用以选择题号。
+% \DescribeMacro{\problem}除了使用 \cs{mcmsetup} 来指定题号，你还可以使用
+% \cs{problem}\marg{题号} 命令来选择题号。后一种方式是为了兼容而提供的，不推荐
+% 使用。
+%
+% \subsection{环境}
+%
+% \DescribeEnv{abstract}\DescribeEnv{keywords}
+% \pkg{mcmthesis} 重新定义了 \env{abstract} 环境，并且
+% 定义了 \env{keywords} 环境。需要注意的是，他们的行为和
+% \LaTeX{} 标准的 \cs{title} 命令类似——在使用的时候，只是记录内容，而并不输出内容；
+% 内容的实际输出要等到 \cs{maketitle} 命令。
 %
 % \subsection{编译方式}
 %
@@ -307,6 +345,16 @@ xelatex mcmthesis-demo.tex
 % 对 Mac OS X 和 Linux 的说明同上。
 %
 %
+% \section{版本历史}
+% \begin{description}
+%   \item [5.1.0a] 首次上传到 CTAN。
+%   \item [5.1.0b] 修复 \textsf{CheckSum} 和一些拼写错误。
+%   \item [5.1.0c] 新增 \mopt{titleinsheet} 等选项。
+%   \item [5.1.0d] 修改 \mopt{problem} 的定义方式，定义
+%     \cs{mcmsetup}\marg{key-val 列表} 以修改选项，
+%     调高了摘要页表格的位置，修复摘要页和标题页页码的问题，
+%     修复标题、摘要和关键字过长时分行、分页的问题。
+% \end{description}
 %
 % \title{\hypertarget{English}{%
 %   The \textsf{\jobname} class\thanks{This Document
@@ -320,7 +368,7 @@ xelatex mcmthesis-demo.tex
 %
 % \begin{abstract}
 %   This template is designed for MCM/ICM. The template configured fonts,
-%   header and footer and control sheet style, accroding to the requirements
+%   header and footer and summary sheet style, accroding to the requirements
 %   of COMAP. This document desicribes the template.
 % \end{abstract}
 %
@@ -356,7 +404,7 @@ xelatex mcmthesis-demo.tex
 % \fi
 \begin{minted}{sh}
 cd SOURCE
-xelatex mcmthesis.ins
+xetex mcmthesis.dtx
 xelatex -shell-escape mcmthesis.dtx
 xelatex -shell-escape mcmthesis.dtx
 xelatex mcmthesis-demo.tex
@@ -368,7 +416,7 @@ xelatex mcmthesis-demo.tex
 %
 % To finish the installation, you could copy \file{mcmthesis.cls} to
 % \path{TEXMF/tex/latex/mcmthesis/}, copy \file{mcmthesis.dtx}
-% and \file{mcmthesis.ins} to \path{TEXMF/source/latex/mcmthesis/},
+% to \path{TEXMF/source/latex/mcmthesis/},
 % copy \file{mcmthesis.pdf}, \file{mcmthesis-demo.tex},
 % \file{mcmthesis-demo.pdf}, \file{figures/} and \file{code/} to
 % \path{TEXMF/doc/latex/mcmthesis/}, and then run \verb|texhash| in your
@@ -399,7 +447,7 @@ xelatex mcmthesis-demo.tex
 %   \pkg{berasans} & \pkg{hyperref} & \pkg{ifpdf} & \pkg{ifxetex}\\
 %   \pkg{graphicx} & \pkg{epstopdf} & \pkg{bmpsize} & \pkg{xcolor}\\
 %   \pkg{longtable} & \pkg{tabu} & \pkg{hologo} & \pkg{palatino}\\
-%   \pkg{mwe}\\
+%   \pkg{mwe} & \pkg{environ}\\
 %   \bottomrule
 % \end{longtabu}
 % If you haven't install these packages, you could execute the package
@@ -407,17 +455,44 @@ xelatex mcmthesis-demo.tex
 % them from \url{http://www.ctan.org}.
 %
 % \subsection{Options}
-% \pkg{mcmthesis} has six options that are designed to control the behaviour
-% of the template.
+% \pkg{mcmthesis} defined serval options to control the behaviour of
+% the template. You could specify these options while loading the class.
+% \iffalse
+%<*internal>
+% \fi
+\begin{minted}{tex}
+\documentclass[tcn = 12345, problem = B, titlepage = false]{mcmthesis}
+\end{minted}
+% \iffalse
+%</internal>
+% \fi
+%￼\DescribeMacro{\mcmsetup}You may also use the command \cs{mcmsetup}^^A
+% \marg{key-value list} to specify them.
+% \iffalse
+%<*internal>
+% \fi
+\begin{minted}{tex}
+\documentclass{mcmthesis}
+\mcmsetup{tcn = 12345, problem = B, titlepage = false}
+\end{minted}
+% \iffalse
+%</internal>
+% \fi
+% The two methods share the same effect.
+%
+% \pkg{mcmthesis} has seven options.
 % \begin{description}
 %   \item [tcn] The team control number, recieves a string as value;
-%     this value will be displayed on control sheet and every page's header.
+%     this value will be displayed on summary sheet and every page's header.
 %     The default value is \texttt{0000}.
-%   \item [sheet] Bool, true to print the control sheet, default
+%   \item [problem] The question, recieves a string as value;
+%     this value will be displayed on summary sheet.
+%     The default value is \texttt{A}.
+%   \item [sheet] Bool, true to print the summary sheet, default
 %     is \texttt{true}.
-%   \item [titleinsheet] Bool, true to print the title in the control sheet,
+%   \item [titleinsheet] Bool, true to print the title in the summary sheet,
 %     default is \texttt{false}.
-%   \item [keywordsinsheet] Bool, true to print keywords in the control sheet,
+%   \item [keywordsinsheet] Bool, true to print keywords in the summary sheet,
 %     default is \texttt{false}.
 %   \item [titlepage] Bool, true to print the titlepage,
 %     default is \texttt{true}.
@@ -428,14 +503,26 @@ xelatex mcmthesis-demo.tex
 % Note that the effect of \texttt{titleinsheet} and \texttt{keywordsinsheet}
 % are under the control of the option \texttt{sheet}, that is, if
 % \texttt{sheet} is set to \texttt{false}, title and/or keywords will not be
-% printed on the control sheet, whatever the value of these two options are.
-% On the other hand, the abstract will always be printed on the control sheet,
+% printed on the summary sheet, whatever the value of these two options are.
+% On the other hand, the abstract will always be printed on the summary sheet,
 % if the \texttt{sheet} is set to \texttt{true}. The relationship between
 % \texttt{abstract} and \texttt{titlepage} is similar to that just mentioned.
 %
 % \subsection{Question}
 %
-% The template defines \cs{problem}\marg{question} to choose the question.
+% \DescribeMacro{\problem}Besides using \cs{mcmsetup} to choose question,
+% you could also use \cs{problem}\marg{Question} to do this.
+% However, the later one is here just because of backward compatibility,
+% and is not recommended any longer.
+%
+% \subsection{Environment}
+%
+% \DescribeEnv{abstract}\DescribeEnv{keywords}
+% \pkg{mcmthesis} redefined the \env{abstract} environment, and defined a
+% new environment named \env{keywords}. Note that these two environments
+% behave like the standard \cs{title} --- they will not print any contents
+% to the PDF file when they are used but just record them; the output task
+% belongs to \cs{maketitle}.
 %
 % \subsection{Compilation Workflow}
 %
@@ -447,6 +534,17 @@ xelatex mcmthesis-demo.tex
 % \end{itemize}
 %
 %
+% \section{History}
+% \begin{description}
+%   \item [5.1.0a] First release to CTAN.
+%   \item [5.1.0b] Fix the bug of \textsf{CheckSum} and typos.
+%   \item [5.1.0c] Import options, such as \mopt{titleinsheet}.
+%   \item [5.1.0d] Change the way to define \mopt{problem}, create
+%     \cs{mcmsetup}\marg{key-val list} to modify the option, slightly lift
+%     the table on the summary sheet, fix the
+%     bug of page number and fix the bug of title, abstract and keywords.
+% \end{description}
+%
 % \StopEventually{}
 % \section{The Implementation}
 % \subsection{Basic Information}
@@ -454,9 +552,9 @@ xelatex mcmthesis-demo.tex
 %<*class>
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{mcmthesis}
-  [2015/01/29 v5.1.0c Thesis Template For MCM/ICM]
+  [2015/02/05 v5.1.0d Thesis Template For MCM/ICM]
 \typeout{Thesis Template For MCM/ICM}
-\def\MCMversion{v5.1.0c}
+\def\MCMversion{v5.1.0d}
 %    \end{macrocode}
 % \subsection{Options}
 %
@@ -465,8 +563,13 @@ xelatex mcmthesis-demo.tex
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \SetupKeyvalOptions{family=MCM, prefix=MCM@opt@, setkeys=\kvsetkeys}
-\newcommand{\skv}[1]{\kvsetkeys{MCM}{#1}}
 %    \end{macrocode}
+% \begin{macro}{\mcmsetup}
+%
+%    \begin{macrocode}
+\newcommand{\mcmsetup}[1]{\kvsetkeys{MCM}{#1}}
+%    \end{macrocode}
+% \end{macro}
 %
 % Declaring options.
 %    \begin{macrocode}
@@ -481,6 +584,7 @@ xelatex mcmthesis-demo.tex
 \DeclareBoolOption[true]{abstract}
 \DeclareComplementaryOption{noabstract}{abstract}
 \DeclareStringOption[0000]{tcn}[0000]
+\DeclareStringOption[A]{problem}[A]
 \DeclareDefaultOption{\relax}
 %    \end{macrocode}
 % Processing options.
@@ -495,7 +599,6 @@ xelatex mcmthesis-demo.tex
 %
 % User interface.
 %    \begin{macrocode}
-\newcommand{\control}{\MCM@opt@tcn}
 \newcommand{\team}{Team \#\ \MCM@opt@tcn}
 %    \end{macrocode}
 % \subsection{Loading Packages}
@@ -519,6 +622,7 @@ xelatex mcmthesis-demo.tex
 \RequirePackage[scaled]{berasans}
 \RequirePackage{hyperref}
 \RequirePackage{ifpdf, ifxetex}
+\RequirePackage{environ}
 %    \end{macrocode}
 %
 % Loading \pkg{graphicx} and its relations after checking drivers.
@@ -609,51 +713,58 @@ xelatex mcmthesis-demo.tex
             {./imgs/}{./figs/}{./images/}{./figures/}{./pictures/}}
 %    \end{macrocode}
 % \subsection{Designing Sheets and their Relations}
-% Redefining \cs{@maketitle}, which is executed by \cs{maketitle}.
-% \cs{@maketitle} will check if the control sheet and titlepage should
-% be printed.
+% Redefining \cs{maketitle}, which will check if the control
+% sheet and titlepage should be printed.
 %    \begin{macrocode}
-\def\@maketitle{%
+\def\maketitle{%
+  \let\saved@thepage\thepage
+  \let\thepage\relax
   \ifMCM@opt@sheet
   \makesheet
   \fi
   \newpage
   \ifMCM@opt@titlepage
   \MCM@maketitle
-  \fi}
+  \fi
+  \let\thepage\saved@thepage
+  \setcounter{page}{0}
+  \clearpage
+  \pagestyle{fancy}
+}
 %    \end{macrocode}
 %
 % Making the \env{abstract} environment.
 %    \begin{macrocode}
-\def\keywordsname{{\bfseries Keywords:}}
-\def\@abstract{}%
-\newbox\@abstract%
-\setbox\@abstract\hbox{}%
-\long\def\abstract{\bgroup\global\setbox\@abstract%
-  \vbox\bgroup\hsize\textwidth\leftskip1cm\rightskip1cm}%
-\def\endabstract{\egroup\egroup}
-\newbox\@keywords
-\setbox\@keywords\hbox{}
-\def\keywords{\bgroup\global\setbox\@keywords\vbox\bgroup\noindent\leftskip0cm}
-\def\endkeywords{\egroup\egroup}%
+\def\abstractname{Summary}
+\RenewEnviron{abstract}{\xdef\@abstract{\expandonce\BODY}}
 \def\make@abstract{%
-\par%
-\centerline{\bfseries\abstractname}\vskip5pt\par%
-\noindent\usebox\@abstract\par%
-\noindent\hskip1cm\keywordsname\ \usebox\@keywords%
-\vskip10pt%
+  \begin{center}
+    \textbf{\abstractname}
+  \end{center}
+  \@abstract\par
+  \let\@abstract\relax
+}
+%    \end{macrocode}
+%
+% Making the \env{keywords} environment.
+%    \begin{macrocode}
+\def\keywordsname{Keywords}
+\NewEnviron{keywords}{\xdef\@keywords{\expandonce\BODY}}
+\def\make@keywords{%
+  \par\noindent\textbf{\keywordsname}:
+  \@keywords\par
+  \let\@keywords\relax
 }
 %    \end{macrocode}
 %
 % Defining the \cs{makesheet}.
 %    \begin{macrocode}
-\newcommand{\@problem}[1]{}
-\newcommand{\problem}[1]{\gdef\@problem{#1}}
+\newcommand{\problem}[1]{\mcmsetup{problem = #1}}
 \def\makesheet{%
+  \pagestyle{empty}%
   \null%
-  \vskip 3em%
+  \vskip -3em%
   \begingroup\fontfamily{fvs}\fontseries{m}\selectfont%
-  \thispagestyle{empty}%
   \noindent\begin{tabularx}{0.3\textwidth}{lX}%
   \multicolumn{2}{l}{For office use only}\\
     T1&\rule{3cm}{0.5pt}\\
@@ -667,7 +778,8 @@ xelatex mcmthesis-demo.tex
     {\fontsize{38pt}{25pt}\selectfont  \textbf{\MCM@opt@tcn} }%
       \normalsize\\[10pt]
     Problem Chosen\\[10pt]
-    {\fontsize{20pt}{\baselineskip}\selectfont \textbf{\@problem}}\normalsize\\
+    {\fontsize{20pt}{\baselineskip}\selectfont
+    \textbf{\MCM@opt@problem}}\normalsize\\
     \end{minipage}\hspace{\fill}
     \begin{tabularx}{0.28\textwidth}{lX}%
     \multicolumn{2}{l}{For office use only}\\
@@ -678,18 +790,21 @@ xelatex mcmthesis-demo.tex
     \end{tabularx}\par
 \noindent\rule{\textwidth}{0.5pt}\par
 \begin{center}
-  \textbf{\the\year\ Mathematical Contest in Modeling (MCM) Summary Sheet}\\
-(Attach a copy of this page to each copy of your solution paper.)
+  \textbf{{\Large\the\year}\\%
+  Mathematical Contest in Modeling (MCM/ICM) Summary Sheet}%
+  \par
+  \vskip 1.5ex%
+  \begingroup
+  \ifMCM@opt@titleinsheet
+    \normalfont \LARGE \@title \par
+  \fi
+  \endgroup
 \end{center}
-\ifMCM@opt@titleinsheet
-  \centerline{\normalfont \LARGE \@title}
-\fi
-\vskip 1.5em%
 \ifMCM@opt@keywordsinsheet
   \make@abstract
+  \make@keywords
 \else
-  \centerline{\large\bfseries\abstractname}
-  \noindent\usebox\@abstract
+  \make@abstract
 \fi
 \endgroup}
 %    \end{macrocode}
@@ -697,8 +812,6 @@ xelatex mcmthesis-demo.tex
 % Defining the \cs{MCM@maketitle}
 %    \begin{macrocode}
 \newcommand{\MCM@maketitle}{%
-  \null
-  \vskip 2em%
   \begin{center}%
   \let \footnote \thanks
     {\LARGE \@title \par}%
@@ -714,7 +827,8 @@ xelatex mcmthesis-demo.tex
   \par
   \vskip 1.5em%
   \ifMCM@opt@abstract%
-  \make@abstract%
+  \make@abstract
+  \make@keywords
   \fi%
 }
 %    \end{macrocode}
@@ -766,14 +880,13 @@ xelatex mcmthesis-demo.tex
 % \iffalse
 %<*demo>
 %!TEX program = xelatex
-\documentclass[tcn = 0000,
+\documentclass{mcmthesis}
+\mcmsetup{tcn = 0000, problem = A,
         sheet = true, titleinsheet = true, keywordsinsheet = true,
-        titlepage = true, abstract = true]
-        {mcmthesis}
-\problem{A}
+        titlepage = true, abstract = true}
 \usepackage{palatino}
 \usepackage{mwe}
-\title{The \LaTeX{} Template for MCM Version 5.1.0b}
+\title{The \LaTeX{} Template for MCM Version \MCMversion}
 \author{\small \href{http://www.latexstudio.net/}
   {\includegraphics[width=7cm]{mcmthesis-logo}}}
 \date{\today}
@@ -785,7 +898,6 @@ keyword1; keyword2
 \end{keywords}
 \end{abstract}
 \maketitle
-\newpage
 % Generate the Table of Contents, if it's needed.
 % \tableofcontents
 % \newpage
@@ -959,6 +1071,11 @@ and the derived files          mcmthesis.cls,
                                mcmthesis-demo.pdf.
 
 To install this class, you should
+    compile `mcmthesis.dtx` with `xetex mcmthesis.dtx`,
+    compile `mcmthesis.dtx` with `xelatex -shell-escape mcmthesis.dtx` twice,
+    compile `mcmthesis-demo.tex` with `xelatex mcmthesis-demo.tex` twice,
+    rename `README.tex` and `LICENSE.tex` respectively to
+      `README` and `LICENSE`,
     move `mcmthesis.cls` to `TEXMF/tex/latex/mcmthesis/`,
     move `mcmthesis.dtx` to `TEXMF/source/latex/mcmthesis/`,
     move other files     to `TEXMF/doc/latex/mcmthesis/` and then
@@ -994,7 +1111,7 @@ The package has status 'maintained': the current maintainer is
 % \Finale
 \endinput
 %%
-%% This work consists of the file  mcmthesis.dtx, mcmthesis.ins,
+%% This work consists of the file  mcmthesis.dtx,
 %%                                 figures/, and code/,
 %% and the derived files           mcmthesis.cls,
 %%                                 mcmthesis-demo.tex,
