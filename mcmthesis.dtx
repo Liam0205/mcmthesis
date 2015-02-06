@@ -101,7 +101,7 @@ and the derived files             \jobname.cls,
 %</internal>
 %<*driver>
 \ProvidesFile{mcmthesis.dtx}
-  [2015/02/05 v5.1.0d Thesis Template For MCM/ICM]
+  [2015/02/06 v5.1.0e Thesis Template For MCM/ICM]
 \documentclass{ltxdoc}
 \EnableCrossrefs
 \CodelineIndex
@@ -131,7 +131,7 @@ and the derived files             \jobname.cls,
 %</driver>
 % \fi
 %
-% \CheckSum{344}
+% \CheckSum{352}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -354,6 +354,8 @@ xelatex mcmthesis-demo.tex
 %     \cs{mcmsetup}\marg{key-val 列表} 以修改选项，
 %     调高了摘要页表格的位置，修复摘要页和标题页页码的问题，
 %     修复标题、摘要和关键字过长时分行、分页的问题。
+%   \item [5.1.0e] 重新定义摘要页顶部的表格，以符合赛事主办方 COMAP 的最新版的
+%     摘要页。
 % \end{description}
 %
 % \title{\hypertarget{English}{%
@@ -543,6 +545,8 @@ xelatex mcmthesis-demo.tex
 %     \cs{mcmsetup}\marg{key-val list} to modify the option, slightly lift
 %     the table on the summary sheet, fix the
 %     bug of page number and fix the bug of title, abstract and keywords.
+%   \item [5.1.0e] Redefine the table at the top of the summary sheet to
+%     match the latest summary sheet from COMAP, the maker of the contest.
 % \end{description}
 %
 % \StopEventually{}
@@ -552,9 +556,9 @@ xelatex mcmthesis-demo.tex
 %<*class>
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{mcmthesis}
-  [2015/02/05 v5.1.0d Thesis Template For MCM/ICM]
+  [2015/02/06 v5.1.0e Thesis Template For MCM/ICM]
 \typeout{Thesis Template For MCM/ICM}
-\def\MCMversion{v5.1.0d}
+\def\MCMversion{v5.1.0e}
 %    \end{macrocode}
 % \subsection{Options}
 %
@@ -763,50 +767,49 @@ xelatex mcmthesis-demo.tex
 \def\makesheet{%
   \pagestyle{empty}%
   \null%
-  \vskip -3em%
-  \begingroup\fontfamily{fvs}\fontseries{m}\selectfont%
-  \noindent\begin{tabularx}{0.3\textwidth}{lX}%
-  \multicolumn{2}{l}{For office use only}\\
-    T1&\rule{3cm}{0.5pt}\\
-    T2&\rule{3cm}{0.5pt}\\
-    T3&\rule{3cm}{0.5pt}\\
-    T4&\rule{3cm}{0.5pt}\\
-    \end{tabularx}\hspace{\fill}
-    \begin{minipage}{0.33\textwidth}
-    \centering
-    Team Control Number\\[10pt]
-    {\fontsize{38pt}{25pt}\selectfont  \textbf{\MCM@opt@tcn} }%
-      \normalsize\\[10pt]
-    Problem Chosen\\[10pt]
-    {\fontsize{20pt}{\baselineskip}\selectfont
-    \textbf{\MCM@opt@problem}}\normalsize\\
-    \end{minipage}\hspace{\fill}
-    \begin{tabularx}{0.28\textwidth}{lX}%
-    \multicolumn{2}{l}{For office use only}\\
-    F1&\rule{3cm}{0.5pt}\\
-    F2&\rule{3cm}{0.5pt}\\
-    F3&\rule{3cm}{0.5pt}\\
-    F4&\rule{3cm}{0.5pt}\\
-    \end{tabularx}\par
-\noindent\rule{\textwidth}{0.5pt}\par
-\begin{center}
+  \vspace*{-6pc}%
+  \begin{center}
+  \begingroup
+  \setlength{\parindent}{0pt}
+  \fontfamily{fvs}\fontseries{m}\selectfont%
+     \begin{minipage}{0.28\linewidth}
+      For office use only\\[4pt]
+      \makebox[0.15\linewidth][l]{T1}\rule[-2pt]{0.85\linewidth}{0.5pt}\\[4pt]
+      \makebox[0.15\linewidth][l]{T2}\rule[-2pt]{0.85\linewidth}{0.5pt}\\[4pt]
+      \makebox[0.15\linewidth][l]{T3}\rule[-2pt]{0.85\linewidth}{0.5pt}\\[4pt]
+      \makebox[0.15\linewidth][l]{T4}\rule[-2pt]{0.85\linewidth}{0.5pt}
+     \end{minipage}%
+     \begin{minipage}{0.44\linewidth}
+      \centering
+      Team Control Number\\[5pt]
+      {\Large\textbf{\textcolor{red}{\MCM@opt@tcn}}}\\[15pt]
+      Problem Chosen\\[10pt]
+      {\Huge\textbf{\textcolor{red}{\MCM@opt@problem}}}
+     \end{minipage}%
+     \begin{minipage}{0.28\linewidth}
+      For office use only\\[4pt]
+      \makebox[0.15\linewidth][l]{F1}\rule[-2pt]{0.85\linewidth}{0.5pt}\\[4pt]
+      \makebox[0.15\linewidth][l]{F2}\rule[-2pt]{0.85\linewidth}{0.5pt}\\[4pt]
+      \makebox[0.15\linewidth][l]{F3}\rule[-2pt]{0.85\linewidth}{0.5pt}\\[4pt]
+      \makebox[0.15\linewidth][l]{F4}\rule[-2pt]{0.85\linewidth}{0.5pt}
+     \end{minipage}\par
+  \rule{\linewidth}{0.5pt}\par
+  \vskip 10pt%
   \textbf{{\Large\the\year}\\%
   Mathematical Contest in Modeling (MCM/ICM) Summary Sheet}%
   \par
-  \vskip 1.5ex%
-  \begingroup
+  \endgroup
+  \vskip 10pt%
   \ifMCM@opt@titleinsheet
     \normalfont \LARGE \@title \par
   \fi
-  \endgroup
-\end{center}
+  \end{center}
 \ifMCM@opt@keywordsinsheet
   \make@abstract
   \make@keywords
 \else
   \make@abstract
-\fi
-\endgroup}
+\fi}
 %    \end{macrocode}
 %
 % Defining the \cs{MCM@maketitle}
