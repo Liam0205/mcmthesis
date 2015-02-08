@@ -7,4 +7,5 @@ xelatex mcmthesis-demo.tex
 mv LICENSE.tex LICENSE
 mv README.tex README
 rm *.log *.out *.aux *.glo *.idx
+rm -rf _minted-mcmthesis
 open .
