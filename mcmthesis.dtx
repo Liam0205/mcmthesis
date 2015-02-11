@@ -20,8 +20,8 @@
 %
 %<*internal>
 \begingroup
-  \def\temp{LaTeX2e}
-\expandafter\endgroup\ifx\temp\fmtname\else
+  \def\LaTeXeName{LaTeX2e}
+\expandafter\endgroup\ifx\LaTeXeName\fmtname\else
 \csname fi\endcsname
 %</internal>
 %<*install>
@@ -131,7 +131,7 @@ and the derived files             \jobname.cls,
 %</driver>
 % \fi
 %
-% \CheckSum{352}
+% \CheckSum{346}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -732,7 +732,7 @@ xelatex mcmthesis-demo.tex
   \fi
   \newpage
   \ifMCM@opt@titlepage
-  \MCM@maketitle
+    \MCM@maketitle
   \fi
   \let\thepage\saved@thepage
   \setcounter{page}{0}
@@ -750,7 +750,6 @@ xelatex mcmthesis-demo.tex
     \textbf{\abstractname}
   \end{center}
   \@abstract\par
-  \let\@abstract\relax
 }
 %    \end{macrocode}
 %
@@ -761,7 +760,6 @@ xelatex mcmthesis-demo.tex
 \def\make@keywords{%
   \par\noindent\textbf{\keywordsname}:
   \@keywords\par
-  \let\@keywords\relax
 }
 %    \end{macrocode}
 %
@@ -834,8 +832,8 @@ xelatex mcmthesis-demo.tex
   \par
   \vskip 1.5em%
   \ifMCM@opt@abstract%
-  \make@abstract
-  \make@keywords
+    \make@abstract
+    \make@keywords
   \fi%
 }
 %    \end{macrocode}
