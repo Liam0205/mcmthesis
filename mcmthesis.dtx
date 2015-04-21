@@ -101,7 +101,7 @@ and the derived files             \jobname.cls,
 %</internal>
 %<*driver>
 \ProvidesFile{mcmthesis.dtx}
-  [2015/02/07 v5.1.0e The Thesis Template Designed For MCM/ICM]
+  [2015/04/21 v5.1.0f The Thesis Template Designed For MCM/ICM]
 \documentclass{ltxdoc}
 \EnableCrossrefs
 \CodelineIndex
@@ -131,7 +131,7 @@ and the derived files             \jobname.cls,
 %</driver>
 % \fi
 %
-% \CheckSum{346}
+% \CheckSum{344}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -357,6 +357,7 @@ xelatex mcmthesis-demo.tex
 %     修复标题、摘要和关键字过长时分行、分页的问题。
 %   \item [5.1.0e] 重新定义摘要页顶部的表格，以符合赛事主办方 COMAP 的最新版的
 %     摘要页。
+%   \item [5.1.0f] 取消 TCN 和选题的红色标记。
 % \end{description}
 %
 % \title{\hypertarget{English}{%
@@ -551,6 +552,8 @@ xelatex mcmthesis-demo.tex
 %     bug of page number and fix the bug of title, abstract and keywords.
 %   \item [5.1.0e] Redefine the table at the top of the summary sheet to
 %     match the latest summary sheet from COMAP, the maker of the contest.
+%   \item [5.1.0f] Cancle the red emphasizing of tcn and problem mark in the
+%     table at the topo of the summary sheet.
 % \end{description}
 %
 % \StopEventually{}
@@ -560,9 +563,9 @@ xelatex mcmthesis-demo.tex
 %<*class>
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{mcmthesis}
-  [2015/02/07 v5.1.0e The Thesis Template Designed For MCM/ICM]
+  [2015/04/21 v5.1.0f The Thesis Template Designed For MCM/ICM]
 \typeout{The Thesis Template Designed For MCM/ICM}
-\def\MCMversion{v5.1.0e}
+\def\MCMversion{v5.1.0f}
 %    \end{macrocode}
 % \subsection{Options}
 %
@@ -784,9 +787,9 @@ xelatex mcmthesis-demo.tex
      \begin{minipage}{0.44\linewidth}
       \centering
       Team Control Number\\[0.7pc]
-      {\LARGE\textbf{\textcolor{red}{\MCM@opt@tcn}}}\\[1.8pc]
+      {\LARGE\textbf{\MCM@opt@tcn}}\\[1.8pc]
       Problem Chosen\\[0.7pc]
-      {\Huge\textbf{\textcolor{red}{\MCM@opt@problem}}}
+      {\Huge\textbf{\MCM@opt@problem}}
      \end{minipage}%
      \begin{minipage}{0.28\linewidth}
       For office use only\\[4pt]
