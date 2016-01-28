@@ -4,7 +4,7 @@
 %
 % Copyright (C)
 %     2010 -- 2015 by Zhaoli Wang
-%     2014 -- 2015 by Liam Huang
+%     2014 -- 2016 by Liam Huang
 % -----------------------------------
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -35,7 +35,7 @@ This is a generated file.
 
 Copyright (C)
     2010 -- 2015 by Zhaoli Wang
-    2014 -- 2015 by Liam Huang
+    2014 -- 2016 by Liam Huang
 
 This work may be distributed and/or modified under the
 conditions of the LaTeX Project Public License, either version 1.3
@@ -78,7 +78,7 @@ and the derived files             \jobname.cls,
 \Msg{* To finish the installation you have to                    *}
 \Msg{*                                                           *}
 \Msg{* produce the user manual run the file \jobname.dtx        *}
-\Msg{* through XeLaTeX --shell-escape,                           *}
+\Msg{* through XeLaTeX,                                          *}
 \Msg{*                                                           *}
 \Msg{* produce the demo file run the file \jobname-demo.tex     *}
 \Msg{* through XeLaTeX,                                          *}
@@ -101,7 +101,7 @@ and the derived files             \jobname.cls,
 %</internal>
 %<*driver>
 \ProvidesFile{mcmthesis.dtx}
-  [2015/04/21 v5.1.0f The Thesis Template Designed For MCM/ICM]
+  [2016/01/28 v6.0 The Thesis Template Designed For MCM/ICM]
 \documentclass{ltxdoc}
 \EnableCrossrefs
 \CodelineIndex
@@ -112,11 +112,23 @@ and the derived files             \jobname.cls,
 \usepackage{tabu}
 \usepackage{longtable}
 \usepackage{booktabs}
-\usepackage{minted}
+\usepackage{listings}
 \usepackage{multirow}
 \usepackage{amsmath}
-\usemintedstyle{perldoc}
-\AtBeginDocument{\hypersetup{hidelinks}}
+\definecolor{grey}{rgb}{0.8,0.8,0.8}
+\definecolor{darkgreen}{rgb}{0,0.3,0}
+\definecolor{darkblue}{rgb}{0,0,0.3}
+\lstset{
+  language=[LaTeX]TeX,
+% style
+  frame=lines,%
+  basicstyle={\footnotesize},%
+  keywordstyle=\color{darkblue}\bfseries,%
+  identifierstyle=,%
+  commentstyle=\color{darkgreen},%\itshape,%
+  stringstyle=\color{black}%
+}
+\AtBeginDocument{\hypersetup{colorlinks=true}}
 \newcommand{\pkg}[1]{\textsf{#1}}
 \newcommand{\env}[1]{\textsf{#1}}
 \newcommand{\cntr}[1]{\textsf{#1}}
@@ -131,7 +143,7 @@ and the derived files             \jobname.cls,
 %</driver>
 % \fi
 %
-% \CheckSum{340}
+% \CheckSum{424}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -178,7 +190,9 @@ and the derived files             \jobname.cls,
 % 用 key-value 语法重构了文档选项，并修复了一些 bug。2015 年年初，黄晨成将模板使用
 % \pkg{DocStrip} 的语法重构，并上传至 CTAN。
 %
-% \section{安装说明}
+% 详细的使用说明，可以参考\href{http://liam0205.me/2016/01/27/how-to-use-mcmthesis/}{这里}。
+%
+% \section{手工安装说明}
 %
 % \subsection{下载}
 %
@@ -186,8 +200,7 @@ and the derived files             \jobname.cls,
 %
 % \begin{description}
 %   \item [CTAN] \url{http://www.ctan.org/pkg/mcmthesis}
-%   \item [GitCafe] \url{https://gitcafe.com/ChinaTeX/mcmthesis}
-%   \item [GitHub] \url{https://github.com/LiamHuang0205/mcmthesis}
+%   \item [GitHub] \url{https://github.com/Liam0205/mcmthesis}
 % \end{description}
 %
 % 此外，文档类也已上传至 CTAN，你可以在 \TeX{} Live 等发行版的宏包管理器中下载。
@@ -198,14 +211,14 @@ and the derived files             \jobname.cls,
 % \iffalse
 %<*internal>
 % \fi
-\begin{minted}{sh}
+\begin{lstlisting}[language=bash]
 cd SOURCE
 xetex mcmthesis.dtx
-xelatex -shell-escape mcmthesis.dtx
-xelatex -shell-escape mcmthesis.dtx
+xelatex mcmthesis.dtx
+xelatex mcmthesis.dtx
 xelatex mcmthesis-demo.tex
 xelatex mcmthesis-demo.tex
-\end{minted}
+\end{lstlisting}
 % \iffalse
 %</internal>
 % \fi
@@ -226,19 +239,18 @@ xelatex mcmthesis-demo.tex
 % 在安装使用之前，请确认你的 \TeX{} 发行版中正确安装了这些宏包。
 % \begin{longtabu}to 0.9\linewidth{*4{X[cm]}}
 %   \toprule
-%   \pkg{kvoptions} & \pkg{etoolbox} & \pkg{fancyhdr} & \pkg{fancybox} \\
+%   \pkg{xkeyval} & \pkg{etoolbox} & \pkg{fancyhdr} & \pkg{fancybox} \\
 %   \pkg{ifthen} & \pkg{lastpage} & \pkg{listings} & \pkg{appendix} \\
 %   \pkg{amsmath} & \pkg{amssymb} & \pkg{amsfonts} & \pkg{amsbsy} \\
 %   \pkg{bm} & \pkg{mathrsfs} & \pkg{latexsym} & \pkg{paralist} \\
 %   \pkg{longtable} & \pkg{multirow} & \pkg{hhline} & \pkg{tabularx} \\
 %   \pkg{ctex} & \pkg{xeCJK} & \pkg{CJK} & \pkg{xCJK2uni}\\
-%   \pkg{tabu} & \pkg{minted} & \pkg{longtable} & \pkg{hologo}\\
+%   \pkg{tabu} & \pkg{environ} & \pkg{longtable} & \pkg{hologo}\\
 %   \pkg{array} & \pkg{flafter} & \pkg{pifont} & \pkg{calc} \\
 %   \pkg{colortbl} & \pkg{booktabs} & \pkg{geometry} & \pkg{fontenc}\\
 %   \pkg{berasans} & \pkg{hyperref} & \pkg{ifpdf} & \pkg{ifxetex}\\
 %   \pkg{graphicx} & \pkg{epstopdf} & \pkg{bmpsize} & \pkg{xcolor}\\
 %   \pkg{longtable} & \pkg{tabu} & \pkg{hologo} & \pkg{palatino}\\
-%   \pkg{mwe} & \pkg{environ}\\
 %   \bottomrule
 % \end{longtabu}
 % 如果你尚未安装这些宏包，可以启动你的 \TeX{} 发行版的宏包管理器
@@ -250,9 +262,9 @@ xelatex mcmthesis-demo.tex
 % \iffalse
 %<*internal>
 % \fi
-\begin{minted}{tex}
+\begin{lstlisting}[language={[LaTeX]TeX}]
 \documentclass[tcn = 12345, problem = B, titlepage = false]{mcmthesis}
-\end{minted}
+\end{lstlisting}
 % \iffalse
 %</internal>
 % \fi
@@ -261,17 +273,18 @@ xelatex mcmthesis-demo.tex
 % \iffalse
 %<*internal>
 % \fi
-\begin{minted}{tex}
+\begin{lstlisting}[language={[LaTeX]TeX}]
 \documentclass{mcmthesis}
 \mcmsetup{tcn = 12345, problem = B, titlepage = false}
-\end{minted}
+\end{lstlisting}
 % \iffalse
 %</internal>
 % \fi
 % 两种做法效果等同。
 %
-% 当前，\pkg{mcmthesis} 有七个选项：
+% 当前，\pkg{mcmthesis} 有八个选项：
 % \begin{description}
+%   \item [CTeX] 兼容选项，默认关闭。当使用 2.9.2.164 版本的 CTeX 套装时请打开。
 %   \item [tcn] 队伍控制号码，接受一个字符串作为值；输入的值将显示在摘要页上和
 %     每一页的页眉上；默认为 \texttt{0000}。
 %   \item [problem] 选题，接受一个字符串作为值；输入的值将显示在摘要页上；
@@ -317,35 +330,17 @@ xelatex mcmthesis-demo.tex
 % \subsection{中文支持}
 %
 % 由于 MCM/ICM 要求以英文写作，所以模板没有内建的中文支持。如果你在文章中需要使用个别中文
-% 字符，可以自行使用合适中文支持方式。
+% 字符，可以自行使用合适中文支持方式。例如，使用 CTeX 宏集：
 %
-% 对于 \XeLaTeX{} 来说，可以使用 \pkg{xeCJK} 宏包。
 % \iffalse
 %<*internal>
 % \fi
-\begin{minted}{tex}
-\usepackage{xeCJK}
-\setCJKmainfont{SimSun}
-\end{minted}
+\begin{lstlisting}[language={[LaTeX]TeX}]
+\usepackage[UTF8, nocap]{ctex}
+\end{lstlisting}
 % \iffalse
 %</internal>
 % \fi
-% 这里，Mac OS X 的用户可以使用 \texttt{STSong} 来代替 \texttt{SimSun}；
-% Linux 用户则可以使用 \texttt{FandolSong}。
-%
-% 对于 pdf\LaTeX{} 和 \LaTeX{} + DVIPDFMx 来说，可以使用 \pkg{zhmCJK} 宏包。
-% \iffalse
-%<*internal>
-% \fi
-\begin{minted}{tex}
-\usepackage{zhmCJK}
-\setCJKmainfont{SimSun.ttc}
-\end{minted}
-% \iffalse
-%</internal>
-% \fi
-% 对 Mac OS X 和 Linux 的说明同上。
-%
 %
 % \section{版本历史}
 % \begin{description}
@@ -359,6 +354,7 @@ xelatex mcmthesis-demo.tex
 %   \item [5.1.0e] 重新定义摘要页顶部的表格，以符合赛事主办方 COMAP 的最新版的
 %     摘要页。
 %   \item [5.1.0f] 取消 TCN 和选题的红色标记。
+%   \item [6.0] 微调输出格式，新增选项 CTeX 以兼容 2.9.2.164 版本的 CTeX 套装。
 % \end{description}
 %
 % \title{\hypertarget{English}{%
@@ -396,8 +392,7 @@ xelatex mcmthesis-demo.tex
 %
 % \begin{description}
 %   \item [CTAN] \url{http://www.ctan.org/pkg/mcmthesis}
-%   \item [GitCafe] \url{https://gitcafe.com/ChinaTeX/mcmthesis}
-%   \item [GitHub] \url{https://github.com/LiamHuang0205/mcmthesis}
+%   \item [GitHub] \url{https://github.com/Liam0205/mcmthesis}
 % \end{description}
 %
 % Moreover, this template had been uploaded to CTAN, so that it could
@@ -410,14 +405,14 @@ xelatex mcmthesis-demo.tex
 % \iffalse
 %<*internal>
 % \fi
-\begin{minted}{sh}
+\begin{lstlisting}[language=bash]
 cd SOURCE
 xetex mcmthesis.dtx
-xelatex -shell-escape mcmthesis.dtx
-xelatex -shell-escape mcmthesis.dtx
+xelatex mcmthesis.dtx
+xelatex mcmthesis.dtx
 xelatex mcmthesis-demo.tex
 xelatex mcmthesis-demo.tex
-\end{minted}
+\end{lstlisting}
 % \iffalse
 %</internal>
 % \fi
@@ -443,19 +438,18 @@ xelatex mcmthesis-demo.tex
 % packages correctly.
 % \begin{longtabu}to 0.9\linewidth{*4{X[cm]}}
 %   \toprule
-%   \pkg{kvoptions} & \pkg{etoolbox} & \pkg{fancyhdr} & \pkg{fancybox} \\
+%   \pkg{xkeyval} & \pkg{etoolbox} & \pkg{fancyhdr} & \pkg{fancybox} \\
 %   \pkg{ifthen} & \pkg{lastpage} & \pkg{listings} & \pkg{appendix} \\
 %   \pkg{amsmath} & \pkg{amssymb} & \pkg{amsfonts} & \pkg{amsbsy} \\
 %   \pkg{bm} & \pkg{mathrsfs} & \pkg{latexsym} & \pkg{paralist} \\
 %   \pkg{longtable} & \pkg{multirow} & \pkg{hhline} & \pkg{tabularx} \\
 %   \pkg{ctex} & \pkg{xeCJK} & \pkg{CJK} & \pkg{xCJK2uni}\\
-%   \pkg{tabu} & \pkg{minted} & \pkg{longtable} & \pkg{hologo}\\
+%   \pkg{tabu} & \pkg{environ} & \pkg{longtable} & \pkg{hologo}\\
 %   \pkg{array} & \pkg{flafter} & \pkg{pifont} & \pkg{calc} \\
 %   \pkg{colortbl} & \pkg{booktabs} & \pkg{geometry} & \pkg{fontenc}\\
 %   \pkg{berasans} & \pkg{hyperref} & \pkg{ifpdf} & \pkg{ifxetex}\\
 %   \pkg{graphicx} & \pkg{epstopdf} & \pkg{bmpsize} & \pkg{xcolor}\\
 %   \pkg{longtable} & \pkg{tabu} & \pkg{hologo} & \pkg{palatino}\\
-%   \pkg{mwe} & \pkg{environ}\\
 %   \bottomrule
 % \end{longtabu}
 % If you haven't install these packages, you could execute the package
@@ -468,9 +462,9 @@ xelatex mcmthesis-demo.tex
 % \iffalse
 %<*internal>
 % \fi
-\begin{minted}{tex}
+\begin{lstlisting}[language={[LaTeX]TeX}]
 \documentclass[tcn = 12345, problem = B, titlepage = false]{mcmthesis}
-\end{minted}
+\end{lstlisting}
 % \iffalse
 %</internal>
 % \fi
@@ -479,10 +473,10 @@ xelatex mcmthesis-demo.tex
 % \iffalse
 %<*internal>
 % \fi
-\begin{minted}{tex}
+\begin{lstlisting}[language={[LaTeX]TeX}]
 \documentclass{mcmthesis}
 \mcmsetup{tcn = 12345, problem = B, titlepage = false}
-\end{minted}
+\end{lstlisting}
 % \iffalse
 %</internal>
 % \fi
@@ -555,6 +549,7 @@ xelatex mcmthesis-demo.tex
 %     match the latest summary sheet from COMAP, the maker of the contest.
 %   \item [5.1.0f] Cancle the red emphasizing of tcn and problem mark in the
 %     table at the topo of the summary sheet.
+%   \item [6.0] Change the output style slightly.
 % \end{description}
 %
 % \StopEventually{}
@@ -564,44 +559,55 @@ xelatex mcmthesis-demo.tex
 %<*class>
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{mcmthesis}
-  [2015/04/21 v5.1.0f The Thesis Template Designed For MCM/ICM]
+  [2016/01/28 v6.0 The Thesis Template Designed For MCM/ICM]
 \typeout{The Thesis Template Designed For MCM/ICM}
-\def\MCMversion{v5.1.0f}
+\def\MCMversion{v6.0}
 %    \end{macrocode}
 % \subsection{Options}
 %
-% Loading \pkg{kvoptions} and \pkg{etoolbox} to handle key-value options.
+% Loading \pkg{xkeyval} and \pkg{etoolbox} to handle key-value options.
 %    \begin{macrocode}
-\RequirePackage{kvoptions}
+\RequirePackage{xkeyval}
 \RequirePackage{etoolbox}
-\SetupKeyvalOptions{family=MCM, prefix=MCM@opt@, setkeys=\kvsetkeys}
 %    \end{macrocode}
-% \begin{macro}{\mcmsetup}
-%
-%    \begin{macrocode}
-\newcommand{\mcmsetup}[1]{\kvsetkeys{MCM}{#1}}
-%    \end{macrocode}
-% \end{macro}
 %
 % Declaring options.
 %    \begin{macrocode}
-\DeclareBoolOption[true]{sheet}
-\DeclareComplementaryOption{nosheet}{sheet}
-\DeclareBoolOption[false]{titleinsheet}
-\DeclareComplementaryOption{notitleinsheet}{titleinsheet}
-\DeclareBoolOption[false]{keywordsinsheet}
-\DeclareComplementaryOption{nokeywordsinsheet}{keywordsinsheet}
-\DeclareBoolOption[true]{titlepage}
-\DeclareComplementaryOption{notitlepage}{titlepage}
-\DeclareBoolOption[true]{abstract}
-\DeclareComplementaryOption{noabstract}{abstract}
-\DeclareStringOption[0000]{tcn}[0000]
-\DeclareStringOption[A]{problem}[A]
-\DeclareDefaultOption{\relax}
+\define@boolkey{MCM}[MCM@opt@]{CTeX}[false]{}
+\define@boolkey{MCM}[MCM@opt@]{titlepage}[true]{}
+\define@boolkey{MCM}[MCM@opt@]{abstract}[true]{}
+\define@boolkey{MCM}[MCM@opt@]{sheet}[true]{}
+\define@boolkey{MCM}[MCM@opt@]{titleinsheet}[false]{}
+\define@boolkey{MCM}[MCM@opt@]{keywordsinsheet}[false]{}
+\define@cmdkeys{MCM}[MCM@opt@]{tcn,problem}
+\define@key{MCM}{tcn}[0000]{\gdef\MCM@opt@tcn{#1}}
+\define@key{MCM}{problem}[A]{\gdef\MCM@opt@problem{#1}}
+\setkeys{MCM}{tcn=0000,problem=B}
+
+\define@key{mcmthesis.cls}{tcn}[0000]{\gdef\MCM@opt@tcn{#1}}
+\define@key{mcmthesis.cls}{problem}[A]{\gdef\MCM@opt@problem{#1}}
+\define@boolkey{mcmthesis.cls}[MCM@opt@]{titlepage}{}
+\define@boolkey{mcmthesis.cls}[MCM@opt@]{abstract}{}
+\define@boolkey{mcmthesis.cls}[MCM@opt@]{sheet}{}
+\define@boolkey{mcmthesis.cls}[MCM@opt@]{titleinsheet}{}
+\define@boolkey{mcmthesis.cls}[MCM@opt@]{keywordsinsheet}{}
+\MCM@opt@sheettrue
+\MCM@opt@titlepagetrue
+\MCM@opt@titleinsheetfalse
+\MCM@opt@keywordsinsheetfalse
+\MCM@opt@abstracttrue
 %    \end{macrocode}
+%
+% \begin{macro}{\mcmsetup}
+%
+%    \begin{macrocode}
+\newcommand{\mcmsetup}[1]{\setkeys{MCM}{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
 % Processing options.
 %    \begin{macrocode}
-\ProcessKeyvalOptions*\relax
+\ProcessOptionsX\relax
 %    \end{macrocode}
 %
 % Loading document class.
@@ -634,7 +640,10 @@ xelatex mcmthesis-demo.tex
 \RequirePackage[scaled]{berasans}
 \RequirePackage{hyperref}
 \RequirePackage{ifpdf, ifxetex}
-\RequirePackage{environ}
+\ifMCM@opt@CTeX
+\else
+  \RequirePackage{environ}
+\fi
 %    \end{macrocode}
 %
 % Loading \pkg{graphicx} and its relations after checking drivers.
@@ -674,8 +683,8 @@ xelatex mcmthesis-demo.tex
 %    \begin{macrocode}
 \pagestyle{fancy}
 \fancyhf{}
-\lhead{\small \team}
-\rhead{\small Page \thepage\ of \pageref{LastPage}}
+\lhead{\small\sffamily \team}
+\rhead{\small\sffamily Page \thepage\ of \pageref{LastPage}}
 %    \end{macrocode}
 %
 % Setting \cs{parskip}.
@@ -685,7 +694,7 @@ xelatex mcmthesis-demo.tex
 % \subsection{Redefining TOC}
 %    \begin{macrocode}
 \renewcommand\tableofcontents{%
-    \centerline{\normalfont\Large\bfseries\contentsname
+    \centerline{\normalfont\Large\bfseries\sffamily\contentsname
         \@mkboth{%
            \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
     \vskip 5ex%
@@ -748,23 +757,46 @@ xelatex mcmthesis-demo.tex
 % Making the \env{abstract} environment.
 %    \begin{macrocode}
 \def\abstractname{Summary}
-\RenewEnviron{abstract}{\xdef\@abstract{\expandonce\BODY}}
-\def\make@abstract{%
-  \begin{center}
-    \textbf{\abstractname}
-  \end{center}
-  \@abstract\par
-}
+\ifMCM@opt@CTeX
+  \newbox\@abstract%
+  \setbox\@abstract\hbox{}%
+  \long\def\abstract{\bgroup\global\setbox\@abstract\vbox\bgroup\hsize\textwidth\leftskip1cm\rightskip1cm}%
+  \def\endabstract{\egroup\egroup}
+  \def\make@abstract{%
+    \begin{center}
+      \textbf{\abstractname}
+    \end{center}
+    \usebox\@abstract\par
+  }
+\else
+  \RenewEnviron{abstract}{\xdef\@abstract{\expandonce\BODY}}
+  \def\make@abstract{%
+    \begin{center}
+      \textbf{\abstractname}
+    \end{center}
+    \@abstract\par
+  }
+\fi
 %    \end{macrocode}
 %
 % Making the \env{keywords} environment.
 %    \begin{macrocode}
 \def\keywordsname{Keywords}
-\NewEnviron{keywords}{\xdef\@keywords{\expandonce\BODY}}
-\def\make@keywords{%
-  \par\noindent\textbf{\keywordsname}:
-  \@keywords\par
-}
+\ifMCM@opt@CTeX
+  \newbox\@keywords
+  \setbox\@keywords\hbox{}
+  \def\keywords{\global\setbox\@keywords\vbox\bgroup\noindent\leftskip0cm}
+  \def\endkeywords{\egroup}%
+  \def\make@keywords{%
+   \par\hskip.4cm\textbf{\keywordsname}: \usebox\@keywords\hfill\par
+  }
+\else
+  \NewEnviron{keywords}{\xdef\@keywords{\expandonce\BODY}}
+  \def\make@keywords{%
+    \par\noindent\textbf{\keywordsname}:
+    \@keywords\par
+  }
+\fi
 %    \end{macrocode}
 %
 % Defining the \cs{makesheet}.
@@ -773,7 +805,7 @@ xelatex mcmthesis-demo.tex
 \def\makesheet{%
   \pagestyle{empty}%
   \null%
-  \vspace*{-6pc}%
+  \vspace*{-5pc}%
   \begin{center}
   \begingroup
   \setlength{\parindent}{0pt}
@@ -787,7 +819,7 @@ xelatex mcmthesis-demo.tex
      \begin{minipage}{0.44\linewidth}
       \centering
       Team Control Number\\[0.7pc]
-      {\LARGE\textbf{\MCM@opt@tcn}}\\[1.8pc]
+      {\Huge\textbf{\MCM@opt@tcn}}\\[1.8pc]
       Problem Chosen\\[0.7pc]
       {\Huge\textbf{\MCM@opt@problem}}
      \end{minipage}%
@@ -888,11 +920,12 @@ xelatex mcmthesis-demo.tex
 %<*demo>
 %!TEX program = xelatex
 \documentclass{mcmthesis}
-\mcmsetup{tcn = 0000, problem = A,
+\mcmsetup{CTeX = false,   % 使用 CTeX 套装时，设置为 true
+        tcn = 0000, problem = A,
         sheet = true, titleinsheet = true, keywordsinsheet = true,
         titlepage = true, abstract = true}
 \usepackage{palatino}
-\usepackage{mwe}
+\usepackage{lipsum}
 \title{The \LaTeX{} Template for MCM Version \MCMversion}
 \author{\small \href{http://www.latexstudio.net/}
   {\includegraphics[width=7cm]{mcmthesis-logo}}}
@@ -1079,7 +1112,7 @@ and the derived files          mcmthesis.cls,
 
 To install this class, you should
     compile `mcmthesis.dtx` with `xetex mcmthesis.dtx`,
-    compile `mcmthesis.dtx` with `xelatex -shell-escape mcmthesis.dtx` twice,
+    compile `mcmthesis.dtx` with `xelatex mcmthesis.dtx` twice,
     compile `mcmthesis-demo.tex` with `xelatex mcmthesis-demo.tex` twice,
     rename `README.tex` and `LICENSE.tex` respectively to
       `README` and `LICENSE`,
@@ -1102,7 +1135,7 @@ Email: liamhuang0205+mcmthesis@gmail.com
 
 If you are interested in the process of development you may observe
 
-<https://github.com/LiamHuang0205/mcmthesis>
+<https://github.com/Liam0205/mcmthesis>
 
 [zhaoli]: http://www.latexstudio.net/
 [liam-ctan]: http://www.ctan.org/author/huang-l

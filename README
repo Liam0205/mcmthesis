@@ -19,7 +19,7 @@ and the derived files          mcmthesis.cls,
 
 To install this class, you should
     compile `mcmthesis.dtx` with `xetex mcmthesis.dtx`,
-    compile `mcmthesis.dtx` with `xelatex -shell-escape mcmthesis.dtx` twice,
+    compile `mcmthesis.dtx` with `xelatex mcmthesis.dtx` twice,
     compile `mcmthesis-demo.tex` with `xelatex mcmthesis-demo.tex` twice,
     rename `README.tex` and `LICENSE.tex` respectively to
       `README` and `LICENSE`,
@@ -42,7 +42,7 @@ Email: liamhuang0205+mcmthesis@gmail.com
 
 If you are interested in the process of development you may observe
 
-<https://github.com/LiamHuang0205/mcmthesis>
+<https://github.com/Liam0205/mcmthesis>
 
 [zhaoli]: http://www.latexstudio.net/
 [liam-ctan]: http://www.ctan.org/author/huang-l
