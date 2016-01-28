@@ -1,7 +1,9 @@
 perl adjust_checksum.pl mcmthesis.dtx
 xetex mcmthesis.dtx
-xelatex -shell-escape mcmthesis.dtx
-xelatex -shell-escape mcmthesis.dtx
+xelatex mcmthesis.dtx
+xelatex mcmthesis.dtx
+#xelatex -shell-escape mcmthesis.dtx
+#xelatex -shell-escape mcmthesis.dtx
 xelatex mcmthesis-demo.tex
 xelatex mcmthesis-demo.tex
 mv LICENSE.tex LICENSE
