@@ -101,7 +101,7 @@ and the derived files             \jobname.cls,
 %</internal>
 %<*driver>
 \ProvidesFile{mcmthesis.dtx}
-  [2016/01/29 v6.1 The Thesis Template Designed For MCM/ICM]
+  [2016/01/29 v6.2 The Thesis Template Designed For MCM/ICM]
 \documentclass{ltxdoc}
 \EnableCrossrefs
 \CodelineIndex
@@ -122,7 +122,7 @@ and the derived files             \jobname.cls,
   language=[LaTeX]TeX,
 % style
   frame=lines,%
-  basicstyle={\footnotesize},%
+  basicstyle={\footnotesize\ttfamily},%
   keywordstyle=\color{darkblue}\bfseries,%
   identifierstyle=,%
   commentstyle=\color{darkgreen},%\itshape,%
@@ -143,7 +143,7 @@ and the derived files             \jobname.cls,
 %</driver>
 % \fi
 %
-% \CheckSum{424}
+% \CheckSum{429}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -318,6 +318,25 @@ xelatex mcmthesis-demo.tex
 % \LaTeX{} 标准的 \cs{title} 命令类似——在使用的时候，只是记录内容，而并不输出内容；
 % 内容的实际输出要等到 \cs{maketitle} 命令。
 %
+% \subsection{摘要页头部设置}
+% \DescribeMacro{\headset}MCM/ICM 的主办方经常变动摘要页头部的年份及赛事名称说明的格式，可谓岁岁年年各不同。因此，模板很难保证这部分的格式与当年的要求完全一致，故而给出一个易于修改的接口。例如：
+% \iffalse
+%<*internal>
+% \fi
+\begin{lstlisting}[language={[LaTeX]TeX}]
+\renewcommand{\headset}{{\Large\the\year}\\MCM/ICM\\Summary Sheet}
+\end{lstlisting}
+% \iffalse
+%</internal>
+% \fi
+% 将会输出：
+% \begin{trivlist}\item
+% \newcommand{\headset}{{\Large\the\year}\\MCM/ICM\\Summary Sheet}
+% \begin{center}
+%   \textbf{\headset}
+% \end{center}
+% \end{trivlist}
+%
 % \subsection{编译方式}
 %
 % 模板支持多种编译方式：
@@ -355,6 +374,8 @@ xelatex mcmthesis-demo.tex
 %     摘要页。
 %   \item [5.1.0f] 取消 TCN 和选题的红色标记。
 %   \item [6.0] 微调输出格式，新增选项 CTeX 以兼容 2.9.2.164 版本的 CTeX 套装。
+%   \item [6.1] 修复问题。
+%   \item [6.2] 可定制的 headset.
 % \end{description}
 %
 % \title{\hypertarget{English}{%
@@ -526,6 +547,25 @@ xelatex mcmthesis-demo.tex
 % to the PDF file when they are used but just record them; the output task
 % belongs to \cs{maketitle}.
 %
+% \subsection{The headset of the Summary Sheet}
+% \DescribeMacro{\headset}Due to the frequent change of the headset's style of the Summary Sheet from the host of MCM/ICM, it's difficult for me to keep in with. Hence, a easy-to-modified interfaced is designed. Let's see an succinct example:
+% \iffalse
+%<*internal>
+% \fi
+\begin{lstlisting}[language={[LaTeX]TeX}]
+\renewcommand{\headset}{{\Large\the\year}\\MCM/ICM\\Summary Sheet}
+\end{lstlisting}
+% \iffalse
+%</internal>
+% \fi
+% while the output is:
+% \begin{trivlist}\item
+% \newcommand{\headset}{{\Large\the\year}\\MCM/ICM\\Summary Sheet}
+% \begin{center}
+%   \textbf{\headset}
+% \end{center}
+% \end{trivlist}
+%
 % \subsection{Compilation Workflow}
 %
 % The template supports various kinds of compilation workflow:
@@ -550,6 +590,8 @@ xelatex mcmthesis-demo.tex
 %   \item [5.1.0f] Cancle the red emphasizing of tcn and problem mark in the
 %     table at the topo of the summary sheet.
 %   \item [6.0] Change the output style slightly.
+%   \item [6.1] Bugfix.
+%   \item [6.2] Making headset of the Summary Sheet modifible.
 % \end{description}
 %
 % \StopEventually{}
@@ -559,9 +601,9 @@ xelatex mcmthesis-demo.tex
 %<*class>
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{mcmthesis}
-  [2016/01/29 v6.1 The Thesis Template Designed For MCM/ICM]
+  [2016/01/29 v6.2 The Thesis Template Designed For MCM/ICM]
 \typeout{The Thesis Template Designed For MCM/ICM}
-\def\MCMversion{v6.1}
+\def\MCMversion{v6.2}
 %    \end{macrocode}
 % \subsection{Options}
 %
@@ -799,6 +841,13 @@ xelatex mcmthesis-demo.tex
 \fi
 %    \end{macrocode}
 %
+% \begin{macro}{\headset}
+%
+%    \begin{macrocode}
+\newcommand{\headset}{{\Large\the\year}\\MCM/ICM\\Summary Sheet}
+%    \end{macrocode}
+% \end{macro}
+%
 % Defining the \cs{makesheet}.
 %    \begin{macrocode}
 \newcommand{\problem}[1]{\mcmsetup{problem = #1}}
@@ -831,8 +880,7 @@ xelatex mcmthesis-demo.tex
       \makebox[0.15\linewidth][l]{F4}\rule[-2pt]{0.85\linewidth}{0.5pt}
      \end{minipage}\par
   \rule{\linewidth}{0.5pt}\par
-  \textbf{{\Large\the\year}\\%
-  Mathematical Contest in Modeling (MCM/ICM) Summary Sheet}%
+  \textbf{\headset}%
   \par
   \endgroup
   \vskip 10pt%
