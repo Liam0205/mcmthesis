@@ -11,10 +11,10 @@ This work consists of the files
 and the derived files:
 * mcmthesis.cls
 * mcmthesis-demo.tex
-* README.md,
-* LICENSE,
+* README.md
+* LICENSE
 * mcmthesis.pdf
-* mcmthesis-demo.pdf.
+* mcmthesis-demo.pdf
 
 To install this class, you should
 1. compile `mcmthesis.dtx` with `xetex mcmthesis.dtx`;
