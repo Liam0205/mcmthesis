@@ -1,5 +1,5 @@
 # The `mcmthesis` Class
-This class is designed for the MCM/ICM. <br>
+This class is designed for the *MCM/ICM*. <br>
 This work is released under the [*LaTeX Project Public License*](http://www.latex-project.org/lppl.txt), v1.3c or later.
 
 ## Installation
@@ -27,19 +27,13 @@ To install this class, you should
 9. run `texhash`.
 
 ## Author
-
-[Zhaoli Wang][zhaoli]
-
+* [*Zhaoli Wang*][zhaoli] <br>
 Email: 343083553@qq.com
-
-[Liam Huang][liam-ctan]
-
+* [*Liam Huang*][liam-ctan] <br>
 Email: liamhuang0205+mcmthesis@gmail.com
 
 ## Project Page
-
-If you are interested in the process of development you may observe
-
+If you are interested in the process of development you may observe <br>
 <https://github.com/Liam0205/mcmthesis>
 
 [zhaoli]: http://www.latexstudio.net/
