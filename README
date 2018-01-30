@@ -7,7 +7,7 @@ License](http://www.latex-project.org/lppl.txt), v1.3c or later.
 
 ## Installation
 
-This work consists of the file mcmthesis.dtx,
+This work consists of the file mcmthesis.dtx, thesis-ref.bib
                                figures/, and
                                code/,
 and the derived files          mcmthesis.cls,

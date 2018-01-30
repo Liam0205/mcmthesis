@@ -28,7 +28,7 @@
 \input docstrip.tex
 \keepsilent
 \preamble
-
+!Mode:: "TeX:UTF-8"
 -----------------------------------
 
 This is a generated file.
@@ -52,7 +52,7 @@ The Current Maintainer of this work is Liam Huang.
 \endpreamble
 \postamble
 
-This work consists of these files \jobname.dtx,
+This work consists of these files \jobname.dtx, thesis-ref.bib 
                                   figures/ and
                                   code/,
 and the derived files             \jobname.cls,
@@ -101,7 +101,7 @@ and the derived files             \jobname.cls,
 %</internal>
 %<*driver>
 \ProvidesFile{mcmthesis.dtx}
-  [2016/01/29 v6.2 The Thesis Template Designed For MCM/ICM]
+  [2018/01/31 v6.3 The Thesis Template Designed For MCM/ICM]
 \documentclass{ltxdoc}
 \EnableCrossrefs
 \CodelineIndex
@@ -115,6 +115,8 @@ and the derived files             \jobname.cls,
 \usepackage{listings}
 \usepackage{multirow}
 \usepackage{amsmath}
+\usepackage[hyperref=true,backend=biber,sorting=none,backref=true]{biblatex}
+\addbibresource{thesis-ref.bib}
 \definecolor{grey}{rgb}{0.8,0.8,0.8}
 \definecolor{darkgreen}{rgb}{0,0.3,0}
 \definecolor{darkblue}{rgb}{0,0,0.3}
@@ -250,7 +252,7 @@ xelatex mcmthesis-demo.tex
 %   \pkg{colortbl} & \pkg{booktabs} & \pkg{geometry} & \pkg{fontenc}\\
 %   \pkg{berasans} & \pkg{hyperref} & \pkg{ifpdf} & \pkg{ifxetex}\\
 %   \pkg{graphicx} & \pkg{epstopdf} & \pkg{bmpsize} & \pkg{xcolor}\\
-%   \pkg{longtable} & \pkg{tabu} & \pkg{hologo} & \pkg{palatino}\\
+%   \pkg{longtable} & \pkg{tabu} & \pkg{hologo} & \pkg{palatino} & \pkg{biblatex}\\
 %   \bottomrule
 % \end{longtabu}
 % 如果你尚未安装这些宏包，可以启动你的 \TeX{} 发行版的宏包管理器
@@ -361,6 +363,16 @@ xelatex mcmthesis-demo.tex
 %</internal>
 % \fi
 %
+% \subsection{BibLaTex生成参考文献}
+% 
+% 6.3版本新增了BibLatex生成参考文献的支持，默认统一生成在Appendix之前。\\
+% 将BibTex格式的参考文献信息粘贴到 thesis-ref.bib文件即可。
+% 使用时编译四次，依次为：
+% \item XeLaTeX
+% \item Biber
+% \item XeLaTeX
+% \item XeLaTeX
+%
 % \section{版本历史}
 % \begin{description}
 %   \item [5.1.0a] 首次上传到 CTAN。
@@ -376,6 +388,7 @@ xelatex mcmthesis-demo.tex
 %   \item [6.0] 微调输出格式，新增选项 CTeX 以兼容 2.9.2.164 版本的 CTeX 套装。
 %   \item [6.1] 修复问题。
 %   \item [6.2] 可定制的 headset.
+%	\item [6.3] 在标题页后添加了目录。添加对BibLaTex生成参考文献的支持。
 % \end{description}
 %
 % \title{\hypertarget{English}{%
@@ -470,7 +483,7 @@ xelatex mcmthesis-demo.tex
 %   \pkg{colortbl} & \pkg{booktabs} & \pkg{geometry} & \pkg{fontenc}\\
 %   \pkg{berasans} & \pkg{hyperref} & \pkg{ifpdf} & \pkg{ifxetex}\\
 %   \pkg{graphicx} & \pkg{epstopdf} & \pkg{bmpsize} & \pkg{xcolor}\\
-%   \pkg{longtable} & \pkg{tabu} & \pkg{hologo} & \pkg{palatino}\\
+%   \pkg{longtable} & \pkg{tabu} & \pkg{hologo} & \pkg{palatino} & \pkg{biblatex}\\
 %   \bottomrule
 % \end{longtabu}
 % If you haven't install these packages, you could execute the package
@@ -503,8 +516,9 @@ xelatex mcmthesis-demo.tex
 % \fi
 % The two methods share the same effect.
 %
-% \pkg{mcmthesis} has seven options.
+% \pkg{mcmthesis} has eight options.
 % \begin{description}
+%	\item [CTeX] Compatibility mode,default is \texttt{false}.Enable this when using CTeX Version 2.9.2.164.
 %   \item [tcn] The team control number, recieves a string as value;
 %     this value will be displayed on summary sheet and every page's header.
 %     The default value is \texttt{0000}.
@@ -574,6 +588,9 @@ xelatex mcmthesis-demo.tex
 %   \item pdf\LaTeX；
 %   \item \LaTeX{} + DVIPDFMx。
 % \end{itemize}
+% \subsection{BibLaTex Supported}
+% You can use biber to generate biblography. Paste reference information about an essay into thesis-ref.bib.\\
+% You can get more information \href{https://www.zhihu.com/question/23565739/answer/51511029}{here}.
 %
 %
 % \section{History}
@@ -592,6 +609,7 @@ xelatex mcmthesis-demo.tex
 %   \item [6.0] Change the output style slightly.
 %   \item [6.1] Bugfix.
 %   \item [6.2] Making headset of the Summary Sheet modifible.
+%	\item [6.3]  Add table of contents. Use BibLaTex to generate bibliography, default position is before Appendix.
 % \end{description}
 %
 % \StopEventually{}
@@ -601,9 +619,9 @@ xelatex mcmthesis-demo.tex
 %<*class>
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{mcmthesis}
-  [2016/01/29 v6.2 The Thesis Template Designed For MCM/ICM]
+  [2018/01/31 v6.3 The Thesis Template Designed For MCM/ICM]
 \typeout{The Thesis Template Designed For MCM/ICM}
-\def\MCMversion{v6.2}
+\def\MCMversion{v6.3}
 %    \end{macrocode}
 % \subsection{Options}
 %
@@ -974,6 +992,8 @@ xelatex mcmthesis-demo.tex
         titlepage = true, abstract = true}
 \usepackage{palatino}
 \usepackage{lipsum}
+\usepackage[hyperref=true,backend=biber,sorting=none,backref=true]{biblatex}
+\addbibresource{thesis-ref.bib}
 \title{The \LaTeX{} Template for MCM Version \MCMversion}
 \author{\small \href{http://www.latexstudio.net/}
   {\includegraphics[width=7cm]{mcmthesis-logo}}}
@@ -987,8 +1007,8 @@ keyword1; keyword2
 \end{abstract}
 \maketitle
 % Generate the Table of Contents, if it's needed.
-% \tableofcontents
-% \newpage
+ \tableofcontents
+ \newpage
 \section{Introduction}
 
 \lipsum[2]
@@ -1107,16 +1127,8 @@ more convenient  for airport and passengers.It also saves many
 human resources for the airline. \item \textbf{}
 \end{itemize}
 
-\begin{thebibliography}{99}
-%\addcontentsline{toc}{section}{References}
-\bibitem{1} D.~E. KNUTH   The \TeX{}book  the American
-Mathematical Society and Addison-Wesley
-Publishing Company , 1984-1986.
-\bibitem{2}Lamport, Leslie,  \LaTeX{}: `` A Document Preparation System '',
-Addison-Wesley Publishing Company, 1986.
-\bibitem{3}\url{http://www.latexstudio.net/}
-\bibitem{4}\url{http://www.chinatex.org/}
-\end{thebibliography}
+\nocite{*}		
+\printbibliography
 
 \begin{appendices}
 
@@ -1148,7 +1160,7 @@ License](http://www.latex-project.org/lppl.txt), v1.3c or later.
 
 ## Installation
 
-This work consists of the file mcmthesis.dtx,
+This work consists of the file mcmthesis.dtx, thesis-ref.bib,
                                figures/, and
                                code/,
 and the derived files          mcmthesis.cls,
@@ -1199,7 +1211,7 @@ The package has status 'maintained': the current maintainer is
 % \Finale
 \endinput
 %%
-%% This work consists of the file  mcmthesis.dtx,
+%% This work consists of the file  mcmthesis.dtx, thesis-ref.bib,
 %%                                 figures/, and code/,
 %% and the derived files           mcmthesis.cls,
 %%                                 mcmthesis-demo.tex,
