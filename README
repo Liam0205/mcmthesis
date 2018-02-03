@@ -2,15 +2,17 @@
 
 This class is designed for the MCM/ICM.
 
-This work is released under the [LaTeX Project Public
-License](http://www.latex-project.org/lppl.txt), v1.3c or later.
+This work is released under the [LaTeX Project Public License](http://www.latex-project.org/lppl.txt), v1.3c or later.
 
 ## Installation
 
-This work consists of the file mcmthesis.dtx, thesis-ref.bib
+This work consists of the file
+
+                               mcmthesis.dtx, thesis-ref.bib
                                figures/, and
                                code/,
-and the derived files          mcmthesis.cls,
+and the derived files          
+                               mcmthesis.cls,
                                mcmthesis-demo.tex,
                                README,
                                LICENSE,
@@ -27,6 +29,15 @@ To install this class, you should
     move `mcmthesis.dtx` to `TEXMF/source/latex/mcmthesis/`,
     move other files     to `TEXMF/doc/latex/mcmthesis/` and then
     run `texhash`.
+
+## Updated
+### Fork 
+[sukanka](sukanka.xyz)
+Email: su975853527@gmail.com
+Last updated: 2018-2-3
+
+- add support for biblatex, you can use biber to generate bibliography. Paste reference information about an essay into thesis-ref.bib.  You can get more information [here](https://www.zhihu.com/question/23565739/answer/51511029).
+- set default fontsize to 12pt to satisfy the latest(2018) requirements.(see also [here](http://www.comap.com/undergraduate/contests/mcm/instructions.php))
 
 ## Author
 
