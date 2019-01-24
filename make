@@ -9,5 +9,5 @@ xelatex -interaction=batchmode mcmthesis-demo.tex
 mv LICENSE.tex LICENSE
 mv README.tex README
 rm *.log *.out *.aux *.glo *.idx
-zip mcmthesis.zip code figures LICENSE README mcmthesis-demo.* mcmthesis.*
+zip -r mcmthesis.zip code figures LICENSE README mcmthesis-demo.* mcmthesis.*
 mv README README.md
