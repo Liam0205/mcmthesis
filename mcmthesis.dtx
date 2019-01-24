@@ -3,8 +3,8 @@
 % This is file `mcmthesis.dtx'.
 %
 % Copyright (C)
-%     2010 -- 2015 by Zhaoli Wang
-%     2014 -- 2016 by Liam Huang
+%     2010 -- 2015    by Zhaoli Wang
+%     2014 -- present by Liam Huang
 % -----------------------------------
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -34,8 +34,8 @@
 This is a generated file.
 
 Copyright (C)
-    2010 -- 2015 by Zhaoli Wang
-    2014 -- 2016 by Liam Huang
+    2010 -- 2015    by Zhaoli Wang
+    2014 -- present by Liam Huang
 
 This work may be distributed and/or modified under the
 conditions of the LaTeX Project Public License, either version 1.3
@@ -101,7 +101,7 @@ and the derived files             \jobname.cls,
 %</internal>
 %<*driver>
 \ProvidesFile{mcmthesis.dtx}
-  [2016/01/29 v6.2 The Thesis Template Designed For MCM/ICM]
+  [2019/01/24 v6.2.1 The Thesis Template Designed For MCM/ICM]
 \documentclass{ltxdoc}
 \EnableCrossrefs
 \CodelineIndex
@@ -237,7 +237,7 @@ xelatex mcmthesis-demo.tex
 % \subsection{依赖}
 % \pkg{mcmthesis} 依赖于以下宏包，这些宏包在常见的 \TeX{} 发行版中都已包含，
 % 在安装使用之前，请确认你的 \TeX{} 发行版中正确安装了这些宏包。
-% \begin{longtabu}to 0.9\linewidth{*4{X[cm]}}
+% \begin{longtabu}{cccc}
 %   \toprule
 %   \pkg{xkeyval} & \pkg{etoolbox} & \pkg{fancyhdr} & \pkg{fancybox} \\
 %   \pkg{ifthen} & \pkg{lastpage} & \pkg{listings} & \pkg{appendix} \\
@@ -375,7 +375,8 @@ xelatex mcmthesis-demo.tex
 %   \item [5.1.0f] 取消 TCN 和选题的红色标记。
 %   \item [6.0] 微调输出格式，新增选项 CTeX 以兼容 2.9.2.164 版本的 CTeX 套装。
 %   \item [6.1] 修复问题。
-%   \item [6.2] 可定制的 headset.
+%   \item [6.2] 可定制的 headset。
+%   \item [6.2.1] 将默认字号由 |11pt| 修改为 |12pt|。
 % \end{description}
 %
 % \title{\hypertarget{English}{%
@@ -457,7 +458,7 @@ xelatex mcmthesis-demo.tex
 % These packages has been installed in common \TeX{} distribution.
 % Before installation, please make sure that you have installed these
 % packages correctly.
-% \begin{longtabu}to 0.9\linewidth{*4{X[cm]}}
+% \begin{longtabu}{cccc}
 %   \toprule
 %   \pkg{xkeyval} & \pkg{etoolbox} & \pkg{fancyhdr} & \pkg{fancybox} \\
 %   \pkg{ifthen} & \pkg{lastpage} & \pkg{listings} & \pkg{appendix} \\
@@ -592,6 +593,7 @@ xelatex mcmthesis-demo.tex
 %   \item [6.0] Change the output style slightly.
 %   \item [6.1] Bugfix.
 %   \item [6.2] Making headset of the Summary Sheet modifible.
+%   \item [6.2.1] Change default fontsize, from |11pt| to |12pt|.
 % \end{description}
 %
 % \StopEventually{}
@@ -601,9 +603,9 @@ xelatex mcmthesis-demo.tex
 %<*class>
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{mcmthesis}
-  [2016/01/29 v6.2 The Thesis Template Designed For MCM/ICM]
+  [2019/01/24 v6.2.1 The Thesis Template Designed For MCM/ICM]
 \typeout{The Thesis Template Designed For MCM/ICM}
-\def\MCMversion{v6.2}
+\def\MCMversion{v6.2.1}
 %    \end{macrocode}
 % \subsection{Options}
 %
