@@ -9,7 +9,7 @@ License](http://www.latex-project.org/lppl.txt), v1.3c or later.
 
 This work consists of the file
 
-*　`mcmthesis.dtx`,
+* `mcmthesis.dtx`,
 * `figures/`', and
 * `code/`',
 
