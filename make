@@ -9,4 +9,5 @@ xelatex mcmthesis-demo.tex
 mv LICENSE.tex LICENSE
 mv README.tex README
 rm *.log *.out *.aux *.glo *.idx
-open .
+zip mcmthesis.zip code figures LICENSE README mcmthesis-demo.* mcmthesis.*
+mv README README.md
