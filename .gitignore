@@ -4,6 +4,7 @@ mcmthesis-demo.pdf
 mcmthesis.cls
 mcmthesis.pdf
 gitpush
+*.zip
 
 ## Mac OS X
 .DS_Store
