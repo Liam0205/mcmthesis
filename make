@@ -1,4 +1,4 @@
-set -x
+set -ex
 
 # check
 perl adjust_checksum.pl mcmthesis.dtx
