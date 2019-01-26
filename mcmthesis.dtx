@@ -144,7 +144,7 @@ and the derived files             \jobname.cls,
 %</driver>
 % \fi
 %
-% \CheckSum{429}
+% \CheckSum{526}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -922,6 +922,59 @@ xelatex mcmthesis-demo.tex
   \fi%
 }
 %    \end{macrocode}
+%
+% \changes{6.2.2}{2019/01/26}{新增 memo 环境}
+% \subsection{the memo environment}
+% Defining macros to store information here.
+%    \begin{macrocode}
+\def\MCM@memoto{\relax}
+\newcommand{\memoto}[1]{\gdef\MCM@memoto{#1}}
+\def\MCM@memofrom{\relax}
+\newcommand{\memofrom}[1]{\gdef\MCM@memofrom{#1}}
+\def\MCM@memosubject{\relax}
+\newcommand{\memosubject}[1]{\gdef\MCM@memosubject{#1}}
+\def\MCM@memodate{\relax}
+\newcommand{\memodate}[1]{\gdef\MCM@memodate{#1}}
+\def\MCM@memologo{\relax}
+\newcommand{\logo}[1]{\gdef\MCM@memologo{\protect #1}}
+\def\@letterheadaddress{\relax}
+\newcommand{\lhaddress}[1]{\gdef\@letterheadaddress{#1}}
+%    \end{macrocode}
+%
+% Now, we could define the |memo| environment.
+%    \begin{macrocode}
+\newenvironment{memo}[1][Memorandum]{%
+  \pagestyle{plain}%
+  \ifthenelse{\equal{\MCM@memologo}{\relax}}{%
+    % without logo specified.
+  }{%
+    % with logo specified
+    \begin{minipage}[t]{\columnwidth}%
+      \begin{flushright}
+        \vspace{-0.6in}
+        \MCM@memologo
+        \vspace{0.5in}
+      \par\end{flushright}%
+    \end{minipage}%
+  }
+  \begin{center}
+    \LARGE\bfseries\scshape
+    #1
+  \end{center}
+  \begin{description}
+    \ifthenelse{\equal{\MCM@memoto}{\relax}}{}{\item [{To:}] \MCM@memoto}
+    \ifthenelse{\equal{\MCM@memofrom}{\relax}}{}{\item [{From:}] \MCM@memofrom}
+    \ifthenelse{\equal{\MCM@memosubject}{\relax}}{}{\item [{Subject:}] \MCM@memosubject}
+    \ifthenelse{\equal{\MCM@memodate}{\relax}}{}{\item [{Date:}] \MCM@memodate}
+  \end{description}
+  \par\noindent
+  \rule[0.5ex]{\linewidth}{0.1pt}\par
+  \bigskip{}
+}{%
+  \clearpage
+  \pagestyle{fancy}%
+}
+%    \end{macrocode}
 % \subsection{Mathematics}
 % Theorems.
 %    \begin{macrocode}
@@ -992,6 +1045,17 @@ keyword1; keyword2
 %% Generate the Table of Contents, if it's needed.
 %% \tableofcontents
 %% \newpage
+%%
+%% Generate the Memorandum, if it's needed.
+%% \memoto{\LaTeX{}studio}
+%% \memofrom{Liam Huang}
+%% \memosubject{Happy \TeX{}ing!}
+%% \memodate{\today}
+%% \logo{\LARGE I'm pretending to be a LOGO!}
+%% \begin{memo}[Memorandum]
+%%   \lipsum[1-3]
+%% \end{memo}
+%%
 \section{Introduction}
 
 \lipsum[2]
