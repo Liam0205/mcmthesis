@@ -319,6 +319,21 @@ xelatex mcmthesis-demo.tex
 % \LaTeX{} 标准的 \cs{title} 命令类似——在使用的时候，只是记录内容，而并不输出内容；
 % 内容的实际输出要等到 \cs{maketitle} 命令。
 %
+% \DescribeEnv{memo}
+% \pkg{mcmthesis} 定义有 \env{memo} 环境。它接受一个可选参数，作为其标题。
+% 设计该环境的初衷是我们发现近年的 MCM 竞赛常常要求学生生成一封信件或者备忘录，作为论文的一部分。
+%
+% \DescribeMacro{memoto}\DescribeMacro{memofrom}\DescribeMacro{memosubject}
+% \DescribeMacro{memodate}\DescribeMacro{memologo}
+% \env{memo} 环境有一些辅助命令：
+% \begin{description}
+%   \item[\cs{memoto}] 表示这份备忘录是留给谁的。
+%   \item[\cs{memofrom}] 表示这份备忘录是谁留下的。
+%   \item[\cs{memosubject}] 表示这份备忘录的主题。
+%   \item[\cs{memodate}] 表示留下这份备忘录的日期。
+%   \item[\cs{memologo}] 其中包含的内容将在输出备忘录的 LOGO 时被调用。
+% \end{description}
+%
 % \subsection{摘要页头部设置}
 % \DescribeMacro{\headset}MCM/ICM 的主办方经常变动摘要页头部的年份及赛事名称说明的格式，可谓岁岁年年各不同。因此，模板很难保证这部分的格式与当年的要求完全一致，故而给出一个易于修改的接口。例如：
 % \iffalse
@@ -394,7 +409,7 @@ xelatex mcmthesis-demo.tex
 % \begin{abstract}
 %   This template is designed for MCM/ICM. The template configured fonts,
 %   header and footer and summary sheet style, accroding to the requirements
-%   of COMAP. This document desicribes the template.
+%   of COMAP. This document describes the template.
 % \end{abstract}
 %
 % \section{Introduction}
@@ -548,6 +563,22 @@ xelatex mcmthesis-demo.tex
 % behave like the standard \cs{title} --- they will not print any contents
 % to the PDF file when they are used but just record them; the output task
 % belongs to \cs{maketitle}.
+%
+% \DescribeEnv{memo}
+% \pkg{mcmthesis} defines the \env{memo} environment, which accepts one optional
+% argument as the title. This work is inspired by the fact that in recent years,
+% MCM requires students to provide a letter or memorandum as a part of the thesis.
+%
+% \DescribeMacro{memoto}\DescribeMacro{memofrom}\DescribeMacro{memosubject}
+% \DescribeMacro{memodate}\DescribeMacro{memologo}
+% The \env{memo} environment is defined with some helper macros listed below:
+% \begin{description}
+%   \item[\cs{memoto}] describes the person you want to leave the memorandum to.
+%   \item[\cs{memofrom}] describes who is the author of the memorandum.
+%   \item[\cs{memosubject}] describes the subject of the memorandum.
+%   \item[\cs{memodate}] describes the date of the memorandum.
+%   \item[\cs{memologo}] the command that will be executed to print a logo for the memorandum.
+% \end{description}
 %
 % \subsection{The headset of the Summary Sheet}
 % \DescribeMacro{\headset}Due to the frequent change of the headset's style of the Summary Sheet from the host of MCM/ICM, it's difficult for me to keep in with. Hence, a easy-to-modified interfaced is designed. Let's see an succinct example:
@@ -936,7 +967,7 @@ xelatex mcmthesis-demo.tex
 \def\MCM@memodate{\relax}
 \newcommand{\memodate}[1]{\gdef\MCM@memodate{#1}}
 \def\MCM@memologo{\relax}
-\newcommand{\logo}[1]{\gdef\MCM@memologo{\protect #1}}
+\newcommand{\memologo}[1]{\gdef\MCM@memologo{\protect #1}}
 \def\@letterheadaddress{\relax}
 \newcommand{\lhaddress}[1]{\gdef\@letterheadaddress{#1}}
 %    \end{macrocode}
