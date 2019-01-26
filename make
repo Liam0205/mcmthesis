@@ -15,7 +15,7 @@ xelatex -interaction=batchmode mcmthesis-demo.tex
 xelatex -interaction=batchmode mcmthesis-demo.tex
 
 # clean
-rm *.log *.out *.aux *.glo *.idx *.zip
+rm *.log *.out *.aux *.glo *.idx *.fdb_latexmk *.fls *.toc *.xdv *.zip
 
 # GitHub
 mv LICENSE.tex LICENSE
