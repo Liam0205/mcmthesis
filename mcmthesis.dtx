@@ -251,7 +251,7 @@ xelatex mcmthesis-demo.tex
 %   \pkg{colortbl} & \pkg{booktabs} & \pkg{geometry} & \pkg{fontenc}\\
 %   \pkg{berasans} & \pkg{hyperref} & \pkg{ifpdf} & \pkg{ifxetex}\\
 %   \pkg{graphicx} & \pkg{epstopdf} & \pkg{bmpsize} & \pkg{xcolor}\\
-%   \pkg{longtable} & \pkg{tabu} & \pkg{hologo} & \pkg{palatino}\\
+%   \pkg{longtable} & \pkg{tabu} & \pkg{hologo} & \pkg{mathpazo}\\
 %   \bottomrule
 % \end{longtabu}
 % 如果你尚未安装这些宏包，可以启动你的 \TeX{} 发行版的宏包管理器
@@ -487,7 +487,7 @@ xelatex mcmthesis-demo.tex
 %   \pkg{colortbl} & \pkg{booktabs} & \pkg{geometry} & \pkg{fontenc}\\
 %   \pkg{berasans} & \pkg{hyperref} & \pkg{ifpdf} & \pkg{ifxetex}\\
 %   \pkg{graphicx} & \pkg{epstopdf} & \pkg{bmpsize} & \pkg{xcolor}\\
-%   \pkg{longtable} & \pkg{tabu} & \pkg{hologo} & \pkg{palatino}\\
+%   \pkg{longtable} & \pkg{tabu} & \pkg{hologo} & \pkg{mathpazo}\\
 %   \bottomrule
 % \end{longtabu}
 % If you haven't install these packages, you could execute the package
@@ -1059,7 +1059,7 @@ xelatex mcmthesis-demo.tex
         tcn = 0000, problem = A,
         sheet = true, titleinsheet = true, keywordsinsheet = true,
         titlepage = true, abstract = true}
-\usepackage{palatino}
+\usepackage{mathpazo}
 \usepackage{lipsum}
 \title{The \LaTeX{} Template for MCM Version \MCMversion}
 \author{\small \href{http://www.latexstudio.net/}
@@ -1166,8 +1166,8 @@ a^2 \label{aa}
 
 \[
   \arcsin \theta  =
-  \mathop{{\int\!\!\!\!\!\int\!\!\!\!\!\int}\mkern-31.2mu
-  \bigodot}\limits_\varphi
+  \mathop{{\int\!\!\!\!\!\int\!\!\!\!\!\int}\mkern-28mu
+  \bigodot}\limits_{\mkern-15mu\varphi}
   {\mathop {\lim }\limits_{x \to \infty } \frac{{n!}}{{r!\left( {n - r}
   \right)!}}} \eqno (1)
 \]
