@@ -340,14 +340,14 @@ xelatex mcmthesis-demo.tex
 %<*internal>
 % \fi
 \begin{lstlisting}[language={[LaTeX]TeX}]
-\renewcommand{\headset}{{\Large\the\year}\\MCM/ICM\\Summary Sheet}
+\renewcommand{\headset}{\the\year\\MCM/ICM\\Summary Sheet}
 \end{lstlisting}
 % \iffalse
 %</internal>
 % \fi
 % 将会输出：
 % \begin{trivlist}\item
-% \newcommand{\headset}{{\Large\the\year}\\MCM/ICM\\Summary Sheet}
+% \newcommand{\headset}{\the\year\\MCM/ICM\\Summary Sheet}
 % \begin{center}
 %   \textbf{\headset}
 % \end{center}
@@ -586,14 +586,14 @@ xelatex mcmthesis-demo.tex
 %<*internal>
 % \fi
 \begin{lstlisting}[language={[LaTeX]TeX}]
-\renewcommand{\headset}{{\Large\the\year}\\MCM/ICM\\Summary Sheet}
+\renewcommand{\headset}{\the\year\\MCM/ICM\\Summary Sheet}
 \end{lstlisting}
 % \iffalse
 %</internal>
 % \fi
 % while the output is:
 % \begin{trivlist}\item
-% \newcommand{\headset}{{\Large\the\year}\\MCM/ICM\\Summary Sheet}
+% \newcommand{\headset}{\the\year\\MCM/ICM\\Summary Sheet}
 % \begin{center}
 %   \textbf{\headset}
 % \end{center}
@@ -840,17 +840,13 @@ xelatex mcmthesis-demo.tex
   \long\def\abstract{\bgroup\global\setbox\@abstract\vbox\bgroup\hsize\textwidth\leftskip1cm\rightskip1cm}%
   \def\endabstract{\egroup\egroup}
   \def\make@abstract{%
-    \begin{center}
-      \textbf{\abstractname}
-    \end{center}
+    \centerline{\bfseries\abstractname}
     \usebox\@abstract\par
   }
 \else
   \RenewEnviron{abstract}{\xdef\@abstract{\expandonce\BODY}}
   \def\make@abstract{%
-    \begin{center}
-      \textbf{\abstractname}
-    \end{center}
+    \centerline{\bfseries\abstractname}
     \@abstract\par
   }
 \fi
@@ -879,7 +875,7 @@ xelatex mcmthesis-demo.tex
 % \begin{macro}{\headset}
 %
 %    \begin{macrocode}
-\newcommand{\headset}{{\Large\the\year}\\MCM/ICM\\Summary Sheet}
+\newcommand{\headset}{\the\year\\MCM/ICM\\Summary Sheet}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -893,30 +889,21 @@ xelatex mcmthesis-demo.tex
   \begin{center}
   \begingroup
   \setlength{\parindent}{0pt}
-     \begin{minipage}{0.28\linewidth}
-      For office use only\\[4pt]
-      \makebox[0.15\linewidth][l]{T1}\rule[-2pt]{0.85\linewidth}{0.5pt}\\[4pt]
-      \makebox[0.15\linewidth][l]{T2}\rule[-2pt]{0.85\linewidth}{0.5pt}\\[4pt]
-      \makebox[0.15\linewidth][l]{T3}\rule[-2pt]{0.85\linewidth}{0.5pt}\\[4pt]
-      \makebox[0.15\linewidth][l]{T4}\rule[-2pt]{0.85\linewidth}{0.5pt}
-     \end{minipage}%
-     \begin{minipage}{0.44\linewidth}
+    \begin{minipage}[t]{0.33\linewidth}
       \centering
-      Team Control Number\\[0.7pc]
-      {\Huge\textbf{\MCM@opt@tcn}}\\[1.8pc]
-      Problem Chosen\\[0.7pc]
-      {\Huge\textbf{\MCM@opt@problem}}
-     \end{minipage}%
-     \begin{minipage}{0.28\linewidth}
-      For office use only\\[4pt]
-      \makebox[0.15\linewidth][l]{F1}\rule[-2pt]{0.85\linewidth}{0.5pt}\\[4pt]
-      \makebox[0.15\linewidth][l]{F2}\rule[-2pt]{0.85\linewidth}{0.5pt}\\[4pt]
-      \makebox[0.15\linewidth][l]{F3}\rule[-2pt]{0.85\linewidth}{0.5pt}\\[4pt]
-      \makebox[0.15\linewidth][l]{F4}\rule[-2pt]{0.85\linewidth}{0.5pt}
-     \end{minipage}\par
-  \rule{\linewidth}{0.5pt}\par
-  \textbf{\headset}%
-  \par
+      \textbf{Problem Chosen}\\
+      \LARGE\MCM@opt@problem
+    \end{minipage}%
+    \begin{minipage}[t]{0.34\linewidth}
+      \centering
+      \bfseries\headset
+    \end{minipage}%
+    \begin{minipage}[t]{0.33\linewidth}
+      \centering
+      \textbf{Team Control Number}\\
+      \LARGE\MCM@opt@tcn\\[1.8pc]
+    \end{minipage}\par
+  \rule{\linewidth}{1.5pt}\par
   \endgroup
   \vskip 10pt%
   \ifMCM@opt@titleinsheet
