@@ -264,7 +264,7 @@ xelatex mcmthesis-demo.tex
 %<*internal>
 % \fi
 \begin{lstlisting}[language={[LaTeX]TeX}]
-\documentclass[tcn = 12345, problem = B, titlepage = false]{mcmthesis}
+\documentclass[tcn = 1234567, problem = B, titlepage = false]{mcmthesis}
 \end{lstlisting}
 % \iffalse
 %</internal>
@@ -276,7 +276,7 @@ xelatex mcmthesis-demo.tex
 % \fi
 \begin{lstlisting}[language={[LaTeX]TeX}]
 \documentclass{mcmthesis}
-\mcmsetup{tcn = 12345, problem = B, titlepage = false}
+\mcmsetup{tcn = 1234567, problem = B, titlepage = false}
 \end{lstlisting}
 % \iffalse
 %</internal>
@@ -287,7 +287,7 @@ xelatex mcmthesis-demo.tex
 % \begin{description}
 %   \item [CTeX] 兼容选项，默认关闭。当使用 2.9.2.164 版本的 CTeX 套装时请打开。
 %   \item [tcn] 队伍控制号码，接受一个字符串作为值；输入的值将显示在摘要页上和
-%     每一页的页眉上；默认为 \texttt{0000}。
+%     每一页的页眉上；默认为 \texttt{0000000}。
 %   \item [problem] 选题，接受一个字符串作为值；输入的值将显示在摘要页上；
 %     默认为 \texttt{A}。
 %   \item [sheet] 布尔值；为真时将输出摘要页，否则不输出；默认为 \texttt{true}。
@@ -501,7 +501,7 @@ xelatex mcmthesis-demo.tex
 %<*internal>
 % \fi
 \begin{lstlisting}[language={[LaTeX]TeX}]
-\documentclass[tcn = 12345, problem = B, titlepage = false]{mcmthesis}
+\documentclass[tcn = 1234567, problem = B, titlepage = false]{mcmthesis}
 \end{lstlisting}
 % \iffalse
 %</internal>
@@ -513,7 +513,7 @@ xelatex mcmthesis-demo.tex
 % \fi
 \begin{lstlisting}[language={[LaTeX]TeX}]
 \documentclass{mcmthesis}
-\mcmsetup{tcn = 12345, problem = B, titlepage = false}
+\mcmsetup{tcn = 1234567, problem = B, titlepage = false}
 \end{lstlisting}
 % \iffalse
 %</internal>
@@ -524,7 +524,7 @@ xelatex mcmthesis-demo.tex
 % \begin{description}
 %   \item [tcn] The team control number, recieves a string as value;
 %     this value will be displayed on summary sheet and every page's header.
-%     The default value is \texttt{0000}.
+%     The default value is \texttt{0000000}.
 %   \item [problem] The question, recieves a string as value;
 %     this value will be displayed on summary sheet.
 %     The default value is \texttt{A}.
@@ -656,11 +656,11 @@ xelatex mcmthesis-demo.tex
 \define@boolkey{MCM}[MCM@opt@]{titleinsheet}[false]{}
 \define@boolkey{MCM}[MCM@opt@]{keywordsinsheet}[false]{}
 \define@cmdkeys{MCM}[MCM@opt@]{tcn,problem}
-\define@key{MCM}{tcn}[0000]{\gdef\MCM@opt@tcn{#1}}
+\define@key{MCM}{tcn}[0000000]{\gdef\MCM@opt@tcn{#1}}
 \define@key{MCM}{problem}[A]{\gdef\MCM@opt@problem{#1}}
-\setkeys{MCM}{tcn=0000,problem=B}
+\setkeys{MCM}{tcn=0000000,problem=B}
 
-\define@key{mcmthesis.cls}{tcn}[0000]{\gdef\MCM@opt@tcn{#1}}
+\define@key{mcmthesis.cls}{tcn}[0000000]{\gdef\MCM@opt@tcn{#1}}
 \define@key{mcmthesis.cls}{problem}[A]{\gdef\MCM@opt@problem{#1}}
 \define@boolkey{mcmthesis.cls}[MCM@opt@]{titlepage}{}
 \define@boolkey{mcmthesis.cls}[MCM@opt@]{abstract}{}
@@ -1056,7 +1056,7 @@ xelatex mcmthesis-demo.tex
 %!TEX program = xelatex
 \documentclass{mcmthesis}
 \mcmsetup{CTeX = false,   % 使用 CTeX 套装时，设置为 true
-        tcn = 0000, problem = A,
+        tcn = 0000000, problem = A,
         sheet = true, titleinsheet = true, keywordsinsheet = true,
         titlepage = true, abstract = true}
 \usepackage{mathpazo}
