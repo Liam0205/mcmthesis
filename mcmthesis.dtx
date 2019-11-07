@@ -324,14 +324,13 @@ xelatex mcmthesis-demo.tex
 % 设计该环境的初衷是我们发现近年的 MCM 竞赛常常要求学生生成一封信件或者备忘录，作为论文的一部分。
 %
 % \DescribeMacro{memoto}\DescribeMacro{memofrom}\DescribeMacro{memosubject}
-% \DescribeMacro{memodate}\DescribeMacro{memologo}
+% \DescribeMacro{memodate}
 % \env{memo} 环境有一些辅助命令：
 % \begin{description}
 %   \item[\cs{memoto}] 表示这份备忘录是留给谁的。
 %   \item[\cs{memofrom}] 表示这份备忘录是谁留下的。
 %   \item[\cs{memosubject}] 表示这份备忘录的主题。
 %   \item[\cs{memodate}] 表示留下这份备忘录的日期。
-%   \item[\cs{memologo}] 其中包含的内容将在输出备忘录的 LOGO 时被调用。
 % \end{description}
 %
 % \subsection{摘要页头部设置}
@@ -570,14 +569,13 @@ xelatex mcmthesis-demo.tex
 % MCM requires students to provide a letter or memorandum as a part of the thesis.
 %
 % \DescribeMacro{memoto}\DescribeMacro{memofrom}\DescribeMacro{memosubject}
-% \DescribeMacro{memodate}\DescribeMacro{memologo}
+% \DescribeMacro{memodate}
 % The \env{memo} environment is defined with some helper macros listed below:
 % \begin{description}
 %   \item[\cs{memoto}] describes the person you want to leave the memorandum to.
 %   \item[\cs{memofrom}] describes who is the author of the memorandum.
 %   \item[\cs{memosubject}] describes the subject of the memorandum.
 %   \item[\cs{memodate}] describes the date of the memorandum.
-%   \item[\cs{memologo}] the command that will be executed to print a logo for the memorandum.
 % \end{description}
 %
 % \subsection{The headset of the Summary Sheet}
@@ -953,8 +951,6 @@ xelatex mcmthesis-demo.tex
 \newcommand{\memosubject}[1]{\gdef\MCM@memosubject{#1}}
 \def\MCM@memodate{\relax}
 \newcommand{\memodate}[1]{\gdef\MCM@memodate{#1}}
-\def\MCM@memologo{\relax}
-\newcommand{\memologo}[1]{\gdef\MCM@memologo{\protect #1}}
 \def\@letterheadaddress{\relax}
 \newcommand{\lhaddress}[1]{\gdef\@letterheadaddress{#1}}
 %    \end{macrocode}
@@ -963,18 +959,6 @@ xelatex mcmthesis-demo.tex
 %    \begin{macrocode}
 \newenvironment{memo}[1][Memorandum]{%
   \pagestyle{plain}%
-  \ifthenelse{\equal{\MCM@memologo}{\relax}}{%
-    % without logo specified.
-  }{%
-    % with logo specified
-    \begin{minipage}[t]{\columnwidth}%
-      \begin{flushright}
-        \vspace{-0.6in}
-        \MCM@memologo
-        \vspace{0.5in}
-      \par\end{flushright}%
-    \end{minipage}%
-  }
   \begin{center}
     \LARGE\bfseries\scshape
     #1
@@ -1045,7 +1029,6 @@ keyword1; keyword2
 %% \memofrom{Liam Huang}
 %% \memosubject{Happy \TeX{}ing!}
 %% \memodate{\today}
-%% \logo{\LARGE I'm pretending to be a LOGO!}
 %% \begin{memo}[Memorandum]
 %%   \lipsum[1-3]
 %% \end{memo}
