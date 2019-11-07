@@ -292,10 +292,10 @@ xelatex mcmthesis-demo.tex
 %     默认为 \texttt{A}。
 %   \item [sheet] 布尔值；为真时将输出摘要页，否则不输出；默认为 \texttt{true}。
 %   \item [titleinsheet] 布尔值；为真时将在摘要页输出标题，否则不输出；
-%     默认为 \texttt{false}。
+%     默认为 \texttt{true}。
 %   \item [keywordsinsheet] 布尔值；为真时将在摘要页输出关键字，否则不输出；
 %     默认为 \texttt{false}。
-%   \item [titlepage] 布尔值；为真时将输出标题页，否则不输出；默认为 \texttt{true}。
+%   \item [titlepage] 布尔值；为真时将输出标题页，否则不输出；默认为 \texttt{false}。
 %   \item [abstract] 布尔值；为真时将在标题页输出摘要和关键词，否则不输出；默认值为
 %     \texttt{true}。
 % \end{description}
@@ -531,11 +531,11 @@ xelatex mcmthesis-demo.tex
 %   \item [sheet] Bool, true to print the summary sheet, default
 %     is \texttt{true}.
 %   \item [titleinsheet] Bool, true to print the title in the summary sheet,
-%     default is \texttt{false}.
+%     default is \texttt{true}.
 %   \item [keywordsinsheet] Bool, true to print keywords in the summary sheet,
 %     default is \texttt{false}.
 %   \item [titlepage] Bool, true to print the titlepage,
-%     default is \texttt{true}.
+%     default is \texttt{false}.
 %   \item [abstract] Bool, true to print the abstract on the titlepage,
 %     default is \texttt{true}.
 % \end{description}
@@ -650,10 +650,10 @@ xelatex mcmthesis-demo.tex
 % Declaring options.
 %    \begin{macrocode}
 \define@boolkey{MCM}[MCM@opt@]{CTeX}[false]{}
-\define@boolkey{MCM}[MCM@opt@]{titlepage}[true]{}
+\define@boolkey{MCM}[MCM@opt@]{titlepage}[false]{}
 \define@boolkey{MCM}[MCM@opt@]{abstract}[true]{}
 \define@boolkey{MCM}[MCM@opt@]{sheet}[true]{}
-\define@boolkey{MCM}[MCM@opt@]{titleinsheet}[false]{}
+\define@boolkey{MCM}[MCM@opt@]{titleinsheet}[true]{}
 \define@boolkey{MCM}[MCM@opt@]{keywordsinsheet}[false]{}
 \define@cmdkeys{MCM}[MCM@opt@]{tcn,problem}
 \define@key{MCM}{tcn}[0000000]{\gdef\MCM@opt@tcn{#1}}
@@ -668,8 +668,8 @@ xelatex mcmthesis-demo.tex
 \define@boolkey{mcmthesis.cls}[MCM@opt@]{titleinsheet}{}
 \define@boolkey{mcmthesis.cls}[MCM@opt@]{keywordsinsheet}{}
 \MCM@opt@sheettrue
-\MCM@opt@titlepagetrue
-\MCM@opt@titleinsheetfalse
+\MCM@opt@titlepagefalse
+\MCM@opt@titleinsheettrue
 \MCM@opt@keywordsinsheetfalse
 \MCM@opt@abstracttrue
 %    \end{macrocode}
