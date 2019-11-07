@@ -964,14 +964,16 @@ xelatex mcmthesis-demo.tex
     #1
   \end{center}
   \begin{description}
+    \setlength{\itemsep}{.25ex}
+    \setlength{\parskip}{0pt}
     \ifthenelse{\equal{\MCM@memoto}{\relax}}{}{\item [{To:}] \MCM@memoto}
     \ifthenelse{\equal{\MCM@memofrom}{\relax}}{}{\item [{From:}] \MCM@memofrom}
     \ifthenelse{\equal{\MCM@memosubject}{\relax}}{}{\item [{Subject:}] \MCM@memosubject}
     \ifthenelse{\equal{\MCM@memodate}{\relax}}{}{\item [{Date:}] \MCM@memodate}
   \end{description}
   \par\noindent
-  \rule[0.5ex]{\linewidth}{0.1pt}\par
-  \bigskip{}
+  \rule[0pt]{\linewidth}{0.1pt}
+  \vskip\baselineskip\par
 }{%
   \clearpage
   \pagestyle{fancy}%
