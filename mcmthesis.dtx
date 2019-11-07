@@ -700,7 +700,6 @@ xelatex mcmthesis-demo.tex
 \RequirePackage{fancyhdr, fancybox}
 \RequirePackage{ifthen}
 \RequirePackage{lastpage}
-\RequirePackage{listings}
 \RequirePackage[toc, page, title, titletoc, header]{appendix}
 \RequirePackage{paralist}
 \RequirePackage{amsthm, amsfonts}
@@ -1011,30 +1010,6 @@ xelatex mcmthesis-demo.tex
 \providecommand{\me}{\mathrm{e}}
 \providecommand{\mi}{\mathrm{i}}
 %    \end{macrocode}
-% \subsection{Listing Settings}
-%    \begin{macrocode}
-\definecolor{grey}{rgb}{0.8,0.8,0.8}
-\definecolor{darkgreen}{rgb}{0,0.3,0}
-\definecolor{darkblue}{rgb}{0,0,0.3}
-\def\lstbasicfont{\fontfamily{pcr}\selectfont\footnotesize}
-\lstset{%
-% indexing
-   % numbers=left,
-   % numberstyle=\small,%
-% character display
-    showstringspaces=false,
-    showspaces=false,%
-    tabsize=4,%
-% style
-    frame=lines,%
-    basicstyle={\footnotesize\lstbasicfont},%
-    keywordstyle=\color{darkblue}\bfseries,%
-    identifierstyle=,%
-    commentstyle=\color{darkgreen},%\itshape,%
-    stringstyle=\color{black}%
-}
-\lstloadlanguages{C,C++,Java,Matlab,Mathematica}
-%    \end{macrocode}
 %    \begin{macrocode}
 %</class>
 %<class>\endinput
@@ -1212,13 +1187,9 @@ Addison-Wesley Publishing Company, 1986.
 
 Here are simulation programmes we used in our model as follow.\\
 
-\textbf{\textcolor[rgb]{0.98,0.00,0.00}{Input matlab source:}}
-\lstinputlisting[language=Matlab]{./code/mcmthesis-matlab1.m}
 
 \section{Second appendix}
 
-some more text \textcolor[rgb]{0.98,0.00,0.00}{\textbf{Input C++ source:}}
-\lstinputlisting[language=C++]{./code/mcmthesis-sudoku.cpp}
 
 \end{appendices}
 \end{document}
