@@ -320,17 +320,17 @@ xelatex mcmthesis-demo.tex
 % 内容的实际输出要等到 \cs{maketitle} 命令。
 %
 % \DescribeEnv{memo}
-% \pkg{mcmthesis} 定义有 \env{memo} 环境。它接受一个可选参数，作为其标题。
+% \pkg{mcmthesis} 定义有 \env{memo} 环境。它接受一个可选参数，作为其标题（可切换为备忘录、信件、告示等不同内容）。
 % 设计该环境的初衷是我们发现近年的 MCM 竞赛常常要求学生生成一封信件或者备忘录，作为论文的一部分。
 %
 % \DescribeMacro{memoto}\DescribeMacro{memofrom}\DescribeMacro{memosubject}
 % \DescribeMacro{memodate}
 % \env{memo} 环境有一些辅助命令：
 % \begin{description}
-%   \item[\cs{memoto}] 表示这份备忘录是留给谁的。
-%   \item[\cs{memofrom}] 表示这份备忘录是谁留下的。
-%   \item[\cs{memosubject}] 表示这份备忘录的主题。
-%   \item[\cs{memodate}] 表示留下这份备忘录的日期。
+%   \item[\cs{memoto}] 表示这份备忘录/信件是留给谁的。
+%   \item[\cs{memofrom}] 表示这份备忘录/信件是谁留下的。
+%   \item[\cs{memosubject}] 表示这份备忘录/信件的主题。
+%   \item[\cs{memodate}] 表示留下这份备忘录/信件的日期。
 % \end{description}
 %
 % \subsection{摘要页头部设置}
@@ -565,17 +565,18 @@ xelatex mcmthesis-demo.tex
 %
 % \DescribeEnv{memo}
 % \pkg{mcmthesis} defines the \env{memo} environment, which accepts one optional
-% argument as the title. This work is inspired by the fact that in recent years,
+% argument as the title (sothat you can switch to memorandum, letter or anything else).
+% This work is inspired by the fact that in recent years,
 % MCM requires students to provide a letter or memorandum as a part of the thesis.
 %
 % \DescribeMacro{memoto}\DescribeMacro{memofrom}\DescribeMacro{memosubject}
 % \DescribeMacro{memodate}
 % The \env{memo} environment is defined with some helper macros listed below:
 % \begin{description}
-%   \item[\cs{memoto}] describes the person you want to leave the memorandum to.
-%   \item[\cs{memofrom}] describes who is the author of the memorandum.
-%   \item[\cs{memosubject}] describes the subject of the memorandum.
-%   \item[\cs{memodate}] describes the date of the memorandum.
+%   \item[\cs{memoto}] describes the person you want to leave the memorandum / to send letter to.
+%   \item[\cs{memofrom}] describes who is the author of the memorandum / letter.
+%   \item[\cs{memosubject}] describes the subject of the memorandum / letter.
+%   \item[\cs{memodate}] describes the date of the memorandum / letter.
 % \end{description}
 %
 % \subsection{The headset of the Summary Sheet}
