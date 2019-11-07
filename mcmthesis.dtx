@@ -102,7 +102,7 @@ and the derived files             \jobname.cls,
 %</internal>
 %<*driver>
 \ProvidesFile{mcmthesis.dtx}
-  [2019/01/26 v6.2.2 The Thesis Template Designed For MCM/ICM]
+  [2019/11/07 v6.3 The Thesis Template Designed For MCM/ICM]
 \documentclass{ltxdoc}
 \EnableCrossrefs
 \CodelineIndex
@@ -144,7 +144,7 @@ and the derived files             \jobname.cls,
 %</driver>
 % \fi
 %
-% \CheckSum{526}
+% \CheckSum{442}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -243,7 +243,7 @@ xelatex mcmthesis-demo.tex
 %   \pkg{xkeyval} & \pkg{etoolbox} & \pkg{fancyhdr} & \pkg{fancybox} \\
 %   \pkg{ifthen} & \pkg{lastpage} & \pkg{listings} & \pkg{appendix} \\
 %   \pkg{amsmath} & \pkg{amssymb} & \pkg{amsfonts} & \pkg{amsbsy} \\
-%   \pkg{bm} & \pkg{mathrsfs} & \pkg{latexsym} & \pkg{paralist} \\
+%   \pkg{bm} & \pkg{mathrsfs} & \pkg{mathpazo} & \pkg{paralist} \\
 %   \pkg{longtable} & \pkg{multirow} & \pkg{hhline} & \pkg{tabularx} \\
 %   \pkg{ctex} & \pkg{xeCJK} & \pkg{CJK} & \pkg{xCJK2uni}\\
 %   \pkg{tabu} & \pkg{environ} & \pkg{longtable} & \pkg{hologo}\\
@@ -251,7 +251,7 @@ xelatex mcmthesis-demo.tex
 %   \pkg{colortbl} & \pkg{booktabs} & \pkg{geometry} & \pkg{fontenc}\\
 %   \pkg{berasans} & \pkg{hyperref} & \pkg{ifpdf} & \pkg{ifxetex}\\
 %   \pkg{graphicx} & \pkg{epstopdf} & \pkg{bmpsize} & \pkg{xcolor}\\
-%   \pkg{longtable} & \pkg{tabu} & \pkg{hologo} & \pkg{palatino}\\
+%   \pkg{mathptmx} & & & \\
 %   \bottomrule
 % \end{longtabu}
 % 如果你尚未安装这些宏包，可以启动你的 \TeX{} 发行版的宏包管理器
@@ -264,7 +264,7 @@ xelatex mcmthesis-demo.tex
 %<*internal>
 % \fi
 \begin{lstlisting}[language={[LaTeX]TeX}]
-\documentclass[tcn = 12345, problem = B, titlepage = false]{mcmthesis}
+\documentclass[tcn = 1234567, problem = B, titlepage = false]{mcmthesis}
 \end{lstlisting}
 % \iffalse
 %</internal>
@@ -276,7 +276,7 @@ xelatex mcmthesis-demo.tex
 % \fi
 \begin{lstlisting}[language={[LaTeX]TeX}]
 \documentclass{mcmthesis}
-\mcmsetup{tcn = 12345, problem = B, titlepage = false}
+\mcmsetup{tcn = 1234567, problem = B, titlepage = false}
 \end{lstlisting}
 % \iffalse
 %</internal>
@@ -287,15 +287,15 @@ xelatex mcmthesis-demo.tex
 % \begin{description}
 %   \item [CTeX] 兼容选项，默认关闭。当使用 2.9.2.164 版本的 CTeX 套装时请打开。
 %   \item [tcn] 队伍控制号码，接受一个字符串作为值；输入的值将显示在摘要页上和
-%     每一页的页眉上；默认为 \texttt{0000}。
+%     每一页的页眉上；默认为 \texttt{0000000}。
 %   \item [problem] 选题，接受一个字符串作为值；输入的值将显示在摘要页上；
 %     默认为 \texttt{A}。
 %   \item [sheet] 布尔值；为真时将输出摘要页，否则不输出；默认为 \texttt{true}。
 %   \item [titleinsheet] 布尔值；为真时将在摘要页输出标题，否则不输出；
-%     默认为 \texttt{false}。
+%     默认为 \texttt{true}。
 %   \item [keywordsinsheet] 布尔值；为真时将在摘要页输出关键字，否则不输出；
 %     默认为 \texttt{false}。
-%   \item [titlepage] 布尔值；为真时将输出标题页，否则不输出；默认为 \texttt{true}。
+%   \item [titlepage] 布尔值；为真时将输出标题页，否则不输出；默认为 \texttt{false}。
 %   \item [abstract] 布尔值；为真时将在标题页输出摘要和关键词，否则不输出；默认值为
 %     \texttt{true}。
 % \end{description}
@@ -320,18 +320,17 @@ xelatex mcmthesis-demo.tex
 % 内容的实际输出要等到 \cs{maketitle} 命令。
 %
 % \DescribeEnv{memo}
-% \pkg{mcmthesis} 定义有 \env{memo} 环境。它接受一个可选参数，作为其标题。
+% \pkg{mcmthesis} 定义有 \env{memo} 环境。它接受一个可选参数，作为其标题（可切换为备忘录、信件、告示等不同内容）。
 % 设计该环境的初衷是我们发现近年的 MCM 竞赛常常要求学生生成一封信件或者备忘录，作为论文的一部分。
 %
 % \DescribeMacro{memoto}\DescribeMacro{memofrom}\DescribeMacro{memosubject}
-% \DescribeMacro{memodate}\DescribeMacro{memologo}
+% \DescribeMacro{memodate}
 % \env{memo} 环境有一些辅助命令：
 % \begin{description}
-%   \item[\cs{memoto}] 表示这份备忘录是留给谁的。
-%   \item[\cs{memofrom}] 表示这份备忘录是谁留下的。
-%   \item[\cs{memosubject}] 表示这份备忘录的主题。
-%   \item[\cs{memodate}] 表示留下这份备忘录的日期。
-%   \item[\cs{memologo}] 其中包含的内容将在输出备忘录的 LOGO 时被调用。
+%   \item[\cs{memoto}] 表示这份备忘录/信件是留给谁的。
+%   \item[\cs{memofrom}] 表示这份备忘录/信件是谁留下的。
+%   \item[\cs{memosubject}] 表示这份备忘录/信件的主题。
+%   \item[\cs{memodate}] 表示留下这份备忘录/信件的日期。
 % \end{description}
 %
 % \subsection{摘要页头部设置}
@@ -340,14 +339,14 @@ xelatex mcmthesis-demo.tex
 %<*internal>
 % \fi
 \begin{lstlisting}[language={[LaTeX]TeX}]
-\renewcommand{\headset}{{\Large\the\year}\\MCM/ICM\\Summary Sheet}
+\renewcommand{\headset}{\the\year\\MCM/ICM\\Summary Sheet}
 \end{lstlisting}
 % \iffalse
 %</internal>
 % \fi
 % 将会输出：
 % \begin{trivlist}\item
-% \newcommand{\headset}{{\Large\the\year}\\MCM/ICM\\Summary Sheet}
+% \newcommand{\headset}{\the\year\\MCM/ICM\\Summary Sheet}
 % \begin{center}
 %   \textbf{\headset}
 % \end{center}
@@ -393,6 +392,9 @@ xelatex mcmthesis-demo.tex
 %   \item [6.1] 修复问题。
 %   \item [6.2] 可定制的 headset。
 %   \item [6.2.1] 将默认字号由 |11pt| 修改为 |12pt|。
+%   \item [6.2.2] 新增用于排版备忘录/信件的环境 |memo|。
+%   \item [6.3] 参照 COMAP 官网更新了摘要页样式，并移除了若干与实际竞赛情形不符
+%   合的默认选项与功能（如「标题页」、代码等）。
 % \end{description}
 %
 % \title{\hypertarget{English}{%
@@ -477,7 +479,7 @@ xelatex mcmthesis-demo.tex
 % \begin{longtabu}{cccc}
 %   \toprule
 %   \pkg{xkeyval} & \pkg{etoolbox} & \pkg{fancyhdr} & \pkg{fancybox} \\
-%   \pkg{ifthen} & \pkg{lastpage} & \pkg{listings} & \pkg{appendix} \\
+%   \pkg{ifthen} & \pkg{lastpage} & \pkg{mathpazo} & \pkg{appendix} \\
 %   \pkg{amsmath} & \pkg{amssymb} & \pkg{amsfonts} & \pkg{amsbsy} \\
 %   \pkg{bm} & \pkg{mathrsfs} & \pkg{latexsym} & \pkg{paralist} \\
 %   \pkg{longtable} & \pkg{multirow} & \pkg{hhline} & \pkg{tabularx} \\
@@ -487,7 +489,7 @@ xelatex mcmthesis-demo.tex
 %   \pkg{colortbl} & \pkg{booktabs} & \pkg{geometry} & \pkg{fontenc}\\
 %   \pkg{berasans} & \pkg{hyperref} & \pkg{ifpdf} & \pkg{ifxetex}\\
 %   \pkg{graphicx} & \pkg{epstopdf} & \pkg{bmpsize} & \pkg{xcolor}\\
-%   \pkg{longtable} & \pkg{tabu} & \pkg{hologo} & \pkg{palatino}\\
+%   \pkg{mathptmx} & & &\\
 %   \bottomrule
 % \end{longtabu}
 % If you haven't install these packages, you could execute the package
@@ -501,7 +503,7 @@ xelatex mcmthesis-demo.tex
 %<*internal>
 % \fi
 \begin{lstlisting}[language={[LaTeX]TeX}]
-\documentclass[tcn = 12345, problem = B, titlepage = false]{mcmthesis}
+\documentclass[tcn = 1234567, problem = B, titlepage = false]{mcmthesis}
 \end{lstlisting}
 % \iffalse
 %</internal>
@@ -513,7 +515,7 @@ xelatex mcmthesis-demo.tex
 % \fi
 \begin{lstlisting}[language={[LaTeX]TeX}]
 \documentclass{mcmthesis}
-\mcmsetup{tcn = 12345, problem = B, titlepage = false}
+\mcmsetup{tcn = 1234567, problem = B, titlepage = false}
 \end{lstlisting}
 % \iffalse
 %</internal>
@@ -524,18 +526,18 @@ xelatex mcmthesis-demo.tex
 % \begin{description}
 %   \item [tcn] The team control number, recieves a string as value;
 %     this value will be displayed on summary sheet and every page's header.
-%     The default value is \texttt{0000}.
+%     The default value is \texttt{0000000}.
 %   \item [problem] The question, recieves a string as value;
 %     this value will be displayed on summary sheet.
 %     The default value is \texttt{A}.
 %   \item [sheet] Bool, true to print the summary sheet, default
 %     is \texttt{true}.
 %   \item [titleinsheet] Bool, true to print the title in the summary sheet,
-%     default is \texttt{false}.
+%     default is \texttt{true}.
 %   \item [keywordsinsheet] Bool, true to print keywords in the summary sheet,
 %     default is \texttt{false}.
 %   \item [titlepage] Bool, true to print the titlepage,
-%     default is \texttt{true}.
+%     default is \texttt{false}.
 %   \item [abstract] Bool, true to print the abstract on the titlepage,
 %     default is \texttt{true}.
 % \end{description}
@@ -551,7 +553,7 @@ xelatex mcmthesis-demo.tex
 % \subsection{Question}
 %
 % \DescribeMacro{\problem}Besides using \cs{mcmsetup} to choose question,
-% you could also use \cs{problem}\marg{Question} to do this.
+% you could also choose to use \cs{problem}\marg{Question} for this.
 % However, the later one is here just because of backward compatibility,
 % and is not recommended any longer.
 %
@@ -566,18 +568,18 @@ xelatex mcmthesis-demo.tex
 %
 % \DescribeEnv{memo}
 % \pkg{mcmthesis} defines the \env{memo} environment, which accepts one optional
-% argument as the title. This work is inspired by the fact that in recent years,
+% argument as the title (sothat you can switch to memorandum, letter or anything else).
+% This work is inspired by the fact that in recent years,
 % MCM requires students to provide a letter or memorandum as a part of the thesis.
 %
 % \DescribeMacro{memoto}\DescribeMacro{memofrom}\DescribeMacro{memosubject}
-% \DescribeMacro{memodate}\DescribeMacro{memologo}
+% \DescribeMacro{memodate}
 % The \env{memo} environment is defined with some helper macros listed below:
 % \begin{description}
-%   \item[\cs{memoto}] describes the person you want to leave the memorandum to.
-%   \item[\cs{memofrom}] describes who is the author of the memorandum.
-%   \item[\cs{memosubject}] describes the subject of the memorandum.
-%   \item[\cs{memodate}] describes the date of the memorandum.
-%   \item[\cs{memologo}] the command that will be executed to print a logo for the memorandum.
+%   \item[\cs{memoto}] describes the person you want to leave the memorandum / to send letter to.
+%   \item[\cs{memofrom}] describes who is the author of the memorandum / letter.
+%   \item[\cs{memosubject}] describes the subject of the memorandum / letter.
+%   \item[\cs{memodate}] describes the date of the memorandum / letter.
 % \end{description}
 %
 % \subsection{The headset of the Summary Sheet}
@@ -586,14 +588,14 @@ xelatex mcmthesis-demo.tex
 %<*internal>
 % \fi
 \begin{lstlisting}[language={[LaTeX]TeX}]
-\renewcommand{\headset}{{\Large\the\year}\\MCM/ICM\\Summary Sheet}
+\renewcommand{\headset}{\the\year\\MCM/ICM\\Summary Sheet}
 \end{lstlisting}
 % \iffalse
 %</internal>
 % \fi
 % while the output is:
 % \begin{trivlist}\item
-% \newcommand{\headset}{{\Large\the\year}\\MCM/ICM\\Summary Sheet}
+% \newcommand{\headset}{\the\year\\MCM/ICM\\Summary Sheet}
 % \begin{center}
 %   \textbf{\headset}
 % \end{center}
@@ -626,6 +628,10 @@ xelatex mcmthesis-demo.tex
 %   \item [6.1] Bugfix.
 %   \item [6.2] Making headset of the Summary Sheet modifible.
 %   \item [6.2.1] Change default fontsize, from |11pt| to |12pt|.
+%   \item [6.2.2] Create |memo| environment for typesetting letters or memos.
+%   \item [6.3] Update the summary sheet to fit the latest version from COMAP.
+%      Remove some useless default settings and modules, including ``titlepage''
+%      and code listing.
 % \end{description}
 %
 % \StopEventually{}
@@ -635,9 +641,9 @@ xelatex mcmthesis-demo.tex
 %<*class>
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{mcmthesis}
-  [2019/01/26 v6.2.2 The Thesis Template Designed For MCM/ICM]
+  [2019/11/07 v6.3 The Thesis Template Designed For MCM/ICM]
 \typeout{The Thesis Template Designed For MCM/ICM}
-\def\MCMversion{v6.2.2}
+\def\MCMversion{v6.3}
 %    \end{macrocode}
 % \subsection{Options}
 %
@@ -650,17 +656,17 @@ xelatex mcmthesis-demo.tex
 % Declaring options.
 %    \begin{macrocode}
 \define@boolkey{MCM}[MCM@opt@]{CTeX}[false]{}
-\define@boolkey{MCM}[MCM@opt@]{titlepage}[true]{}
+\define@boolkey{MCM}[MCM@opt@]{titlepage}[false]{}
 \define@boolkey{MCM}[MCM@opt@]{abstract}[true]{}
 \define@boolkey{MCM}[MCM@opt@]{sheet}[true]{}
-\define@boolkey{MCM}[MCM@opt@]{titleinsheet}[false]{}
+\define@boolkey{MCM}[MCM@opt@]{titleinsheet}[true]{}
 \define@boolkey{MCM}[MCM@opt@]{keywordsinsheet}[false]{}
 \define@cmdkeys{MCM}[MCM@opt@]{tcn,problem}
-\define@key{MCM}{tcn}[0000]{\gdef\MCM@opt@tcn{#1}}
+\define@key{MCM}{tcn}[0000000]{\gdef\MCM@opt@tcn{#1}}
 \define@key{MCM}{problem}[A]{\gdef\MCM@opt@problem{#1}}
-\setkeys{MCM}{tcn=0000,problem=B}
+\setkeys{MCM}{tcn=0000000,problem=B}
 
-\define@key{mcmthesis.cls}{tcn}[0000]{\gdef\MCM@opt@tcn{#1}}
+\define@key{mcmthesis.cls}{tcn}[0000000]{\gdef\MCM@opt@tcn{#1}}
 \define@key{mcmthesis.cls}{problem}[A]{\gdef\MCM@opt@problem{#1}}
 \define@boolkey{mcmthesis.cls}[MCM@opt@]{titlepage}{}
 \define@boolkey{mcmthesis.cls}[MCM@opt@]{abstract}{}
@@ -668,8 +674,8 @@ xelatex mcmthesis-demo.tex
 \define@boolkey{mcmthesis.cls}[MCM@opt@]{titleinsheet}{}
 \define@boolkey{mcmthesis.cls}[MCM@opt@]{keywordsinsheet}{}
 \MCM@opt@sheettrue
-\MCM@opt@titlepagetrue
-\MCM@opt@titleinsheetfalse
+\MCM@opt@titlepagefalse
+\MCM@opt@titleinsheettrue
 \MCM@opt@keywordsinsheetfalse
 \MCM@opt@abstracttrue
 %    \end{macrocode}
@@ -700,7 +706,6 @@ xelatex mcmthesis-demo.tex
 \RequirePackage{fancyhdr, fancybox}
 \RequirePackage{ifthen}
 \RequirePackage{lastpage}
-\RequirePackage{listings}
 \RequirePackage[toc, page, title, titletoc, header]{appendix}
 \RequirePackage{paralist}
 \RequirePackage{amsthm, amsfonts}
@@ -714,6 +719,7 @@ xelatex mcmthesis-demo.tex
 \RequirePackage{geometry}
 \RequirePackage[T1]{fontenc}
 \RequirePackage[scaled]{berasans}
+\PassOptionsToPackage{hyphens}{url}
 \RequirePackage{hyperref}
 \RequirePackage{ifpdf, ifxetex}
 \ifMCM@opt@CTeX
@@ -806,8 +812,8 @@ xelatex mcmthesis-demo.tex
 %
 % Setting graphic paths.
 %    \begin{macrocode}
-\graphicspath{{./}{./img/}{./fig/}{./image/}{./figure/}{./picture/}
-            {./imgs/}{./figs/}{./images/}{./figures/}{./pictures/}}
+\graphicspath{{./}{./img/}{./fig/}{./image/}{./figure/}{./picture/}{./pic/}
+            {./imgs/}{./figs/}{./images/}{./figures/}{./pictures/}{./pics/}}
 %    \end{macrocode}
 % \subsection{Designing Sheets and their Relations}
 % Redefining \cs{maketitle}, which will check if the control
@@ -839,17 +845,13 @@ xelatex mcmthesis-demo.tex
   \long\def\abstract{\bgroup\global\setbox\@abstract\vbox\bgroup\hsize\textwidth\leftskip1cm\rightskip1cm}%
   \def\endabstract{\egroup\egroup}
   \def\make@abstract{%
-    \begin{center}
-      \textbf{\abstractname}
-    \end{center}
+    \centerline{\bfseries\abstractname}
     \usebox\@abstract\par
   }
 \else
   \RenewEnviron{abstract}{\xdef\@abstract{\expandonce\BODY}}
   \def\make@abstract{%
-    \begin{center}
-      \textbf{\abstractname}
-    \end{center}
+    \centerline{\bfseries\abstractname}
     \@abstract\par
   }
 \fi
@@ -878,7 +880,7 @@ xelatex mcmthesis-demo.tex
 % \begin{macro}{\headset}
 %
 %    \begin{macrocode}
-\newcommand{\headset}{{\Large\the\year}\\MCM/ICM\\Summary Sheet}
+\newcommand{\headset}{\the\year\\MCM/ICM\\Summary Sheet}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -892,30 +894,21 @@ xelatex mcmthesis-demo.tex
   \begin{center}
   \begingroup
   \setlength{\parindent}{0pt}
-     \begin{minipage}{0.28\linewidth}
-      For office use only\\[4pt]
-      \makebox[0.15\linewidth][l]{T1}\rule[-2pt]{0.85\linewidth}{0.5pt}\\[4pt]
-      \makebox[0.15\linewidth][l]{T2}\rule[-2pt]{0.85\linewidth}{0.5pt}\\[4pt]
-      \makebox[0.15\linewidth][l]{T3}\rule[-2pt]{0.85\linewidth}{0.5pt}\\[4pt]
-      \makebox[0.15\linewidth][l]{T4}\rule[-2pt]{0.85\linewidth}{0.5pt}
-     \end{minipage}%
-     \begin{minipage}{0.44\linewidth}
+    \begin{minipage}[t]{0.33\linewidth}
       \centering
-      Team Control Number\\[0.7pc]
-      {\Huge\textbf{\MCM@opt@tcn}}\\[1.8pc]
-      Problem Chosen\\[0.7pc]
-      {\Huge\textbf{\MCM@opt@problem}}
-     \end{minipage}%
-     \begin{minipage}{0.28\linewidth}
-      For office use only\\[4pt]
-      \makebox[0.15\linewidth][l]{F1}\rule[-2pt]{0.85\linewidth}{0.5pt}\\[4pt]
-      \makebox[0.15\linewidth][l]{F2}\rule[-2pt]{0.85\linewidth}{0.5pt}\\[4pt]
-      \makebox[0.15\linewidth][l]{F3}\rule[-2pt]{0.85\linewidth}{0.5pt}\\[4pt]
-      \makebox[0.15\linewidth][l]{F4}\rule[-2pt]{0.85\linewidth}{0.5pt}
-     \end{minipage}\par
-  \rule{\linewidth}{0.5pt}\par
-  \textbf{\headset}%
-  \par
+      \textbf{Problem Chosen}\\
+      \LARGE\MCM@opt@problem
+    \end{minipage}%
+    \begin{minipage}[t]{0.34\linewidth}
+      \centering
+      \bfseries\headset
+    \end{minipage}%
+    \begin{minipage}[t]{0.33\linewidth}
+      \centering
+      \textbf{Team Control Number}\\
+      \LARGE\MCM@opt@tcn\\[1.8pc]
+    \end{minipage}\par
+  \rule{\linewidth}{1.5pt}\par
   \endgroup
   \vskip 10pt%
   \ifMCM@opt@titleinsheet
@@ -966,8 +959,6 @@ xelatex mcmthesis-demo.tex
 \newcommand{\memosubject}[1]{\gdef\MCM@memosubject{#1}}
 \def\MCM@memodate{\relax}
 \newcommand{\memodate}[1]{\gdef\MCM@memodate{#1}}
-\def\MCM@memologo{\relax}
-\newcommand{\memologo}[1]{\gdef\MCM@memologo{\protect #1}}
 \def\@letterheadaddress{\relax}
 \newcommand{\lhaddress}[1]{\gdef\@letterheadaddress{#1}}
 %    \end{macrocode}
@@ -976,31 +967,21 @@ xelatex mcmthesis-demo.tex
 %    \begin{macrocode}
 \newenvironment{memo}[1][Memorandum]{%
   \pagestyle{plain}%
-  \ifthenelse{\equal{\MCM@memologo}{\relax}}{%
-    % without logo specified.
-  }{%
-    % with logo specified
-    \begin{minipage}[t]{\columnwidth}%
-      \begin{flushright}
-        \vspace{-0.6in}
-        \MCM@memologo
-        \vspace{0.5in}
-      \par\end{flushright}%
-    \end{minipage}%
-  }
   \begin{center}
     \LARGE\bfseries\scshape
     #1
   \end{center}
   \begin{description}
+    \setlength{\itemsep}{.25ex}
+    \setlength{\parskip}{0pt}
     \ifthenelse{\equal{\MCM@memoto}{\relax}}{}{\item [{To:}] \MCM@memoto}
     \ifthenelse{\equal{\MCM@memofrom}{\relax}}{}{\item [{From:}] \MCM@memofrom}
     \ifthenelse{\equal{\MCM@memosubject}{\relax}}{}{\item [{Subject:}] \MCM@memosubject}
     \ifthenelse{\equal{\MCM@memodate}{\relax}}{}{\item [{Date:}] \MCM@memodate}
   \end{description}
   \par\noindent
-  \rule[0.5ex]{\linewidth}{0.1pt}\par
-  \bigskip{}
+  \rule[0pt]{\linewidth}{0.1pt}
+  \vskip\baselineskip\par
 }{%
   \clearpage
   \pagestyle{fancy}%
@@ -1023,30 +1004,6 @@ xelatex mcmthesis-demo.tex
 \providecommand{\me}{\mathrm{e}}
 \providecommand{\mi}{\mathrm{i}}
 %    \end{macrocode}
-% \subsection{Listing Settings}
-%    \begin{macrocode}
-\definecolor{grey}{rgb}{0.8,0.8,0.8}
-\definecolor{darkgreen}{rgb}{0,0.3,0}
-\definecolor{darkblue}{rgb}{0,0,0.3}
-\def\lstbasicfont{\fontfamily{pcr}\selectfont\footnotesize}
-\lstset{%
-% indexing
-   % numbers=left,
-   % numberstyle=\small,%
-% character display
-    showstringspaces=false,
-    showspaces=false,%
-    tabsize=4,%
-% style
-    frame=lines,%
-    basicstyle={\footnotesize\lstbasicfont},%
-    keywordstyle=\color{darkblue}\bfseries,%
-    identifierstyle=,%
-    commentstyle=\color{darkgreen},%\itshape,%
-    stringstyle=\color{black}%
-}
-\lstloadlanguages{C,C++,Java,Matlab,Mathematica}
-%    \end{macrocode}
 %    \begin{macrocode}
 %</class>
 %<class>\endinput
@@ -1056,10 +1013,10 @@ xelatex mcmthesis-demo.tex
 %!TEX program = xelatex
 \documentclass{mcmthesis}
 \mcmsetup{CTeX = false,   % 使用 CTeX 套装时，设置为 true
-        tcn = 0000, problem = A,
-        sheet = true, titleinsheet = true, keywordsinsheet = true,
-        titlepage = true, abstract = true}
-\usepackage{palatino}
+        tcn = 0000000, problem = A, sheet = true,
+        titleinsheet = true, keywordsinsheet = true}
+\usepackage{mathpazo}
+%% \usepackage{mathptmx}  % 将 mathpazo 更换为此，即可用 Times 字体
 \usepackage{lipsum}
 \title{The \LaTeX{} Template for MCM Version \MCMversion}
 \author{\small \href{http://www.latexstudio.net/}
@@ -1073,35 +1030,36 @@ keyword1; keyword2
 \end{keywords}
 \end{abstract}
 \maketitle
-%% Generate the Table of Contents, if it's needed.
-%% \tableofcontents
-%% \newpage
+\tableofcontents
+\newpage
 %%
 %% Generate the Memorandum, if it's needed.
 %% \memoto{\LaTeX{}studio}
 %% \memofrom{Liam Huang}
 %% \memosubject{Happy \TeX{}ing!}
 %% \memodate{\today}
-%% \logo{\LARGE I'm pretending to be a LOGO!}
 %% \begin{memo}[Memorandum]
-%%   \lipsum[1-3]
+%%   \lipsum[1-4]
 %% \end{memo}
 %%
 \section{Introduction}
 
 \lipsum[2]
+
+The definition of ``sweet spot'' can be:
 \begin{itemize}
 \item minimizes the discomfort to the hands, or
 \item maximizes the outgoing velocity of the ball.
 \end{itemize}
-We focus exclusively on the second definition.
+We will focus exclusively on the second definition.
 
 \begin{itemize}
-\item the initial velocity and rotation of the ball,
+\item The initial velocity and rotation of the ball,
 \item the initial velocity and rotation of the bat,
 \item the relative position and orientation of the bat and ball, and
 \item the force over time that the hitter hands applies on the handle.
 \end{itemize}
+
 \lipsum[3]
 \begin{itemize}
 \item the angular velocity of the bat,
@@ -1137,22 +1095,23 @@ The proof of theorem.
 \small
 \centering
 \includegraphics[width=12cm]{mcmthesis-aaa.eps}
-\caption{aa} \label{fig:aa}
+\caption{The distribution of temperature inside the boiler} \label{fig:aa}
 \end{figure}
 
-\lipsum[8] \eqref{aa}
-\begin{equation}
-a^2 \label{aa}
+\lipsum[8] See equation \eqref{eq:aa}.
+\begin{equation}\label{eq:aa}
+\Delta u = \left( \frac{ \dif^2 }{ \dif x^2 } +
+           \frac{ \dif^2 }{ \dif y^2 } \right) u = 0
 \end{equation}
 
 
 \[
-  \begin{pmatrix}{*{20}c}
+  \begin{pmatrix}
   {a_{11} } & {a_{12} } & {a_{13} }  \\
   {a_{21} } & {a_{22} } & {a_{23} }  \\
   {a_{31} } & {a_{32} } & {a_{33} }  \\
   \end{pmatrix}
-  = \frac{{Opposite}}{{Hypotenuse}}\cos ^{ - 1} \theta \arcsin \theta
+  = \int_{ 0 }^{ +\infty } \me^{ -\alpha x^2 } \dif x 
 \]
 \lipsum[9]
 
@@ -1166,10 +1125,10 @@ a^2 \label{aa}
 
 \[
   \arcsin \theta  =
-  \mathop{{\int\!\!\!\!\!\int\!\!\!\!\!\int}\mkern-31.2mu
-  \bigodot}\limits_\varphi
+  \mathop{{\int\!\!\!\!\!\int\!\!\!\!\!\int}\mkern-28mu
+  \bigodot}\limits_{\mkern-15mu\varphi}
   {\mathop {\lim }\limits_{x \to \infty } \frac{{n!}}{{r!\left( {n - r}
-  \right)!}}} \eqno (1)
+  \right)!}}} \eqno (2)
 \]
 
 \section{Calculating and Simplifying the Model  }
@@ -1184,36 +1143,43 @@ a^2 \label{aa}
 \section{Conclusions}
 \lipsum[6]
 
-\section{A Summary}
-\lipsum[6]
-
-\section{Evaluate of the Mode}
-
 \section{Strengths and weaknesses}
 \lipsum[12]
 
 \subsection{Strengths}
 \begin{itemize}
 \item \textbf{Applies widely}\\
-This  system can be used for many types of airplanes, and it also
-solves the interference during  the procedure of the boarding
-airplane,as described above we can get to the  optimization
-boarding time.We also know that all the service is automate.
+This system can be used for many types of airplanes, and it also
+solves the interference during the procedure of the boarding
+airplane, as described above we can get to the optimization
+boarding time. We also know that all the service is automate.
 \item \textbf{Improve the quality of the airport service}\\
 Balancing the cost of the cost and the benefit, it will bring in
-more convenient  for airport and passengers.It also saves many
-human resources for the airline. \item \textbf{}
+more convenient for airport and passengers. It also saves many
+human resources for the airline.
+\item \textbf{Do well in validation}\\
+\ldots
+\end{itemize}
+
+\subsection{Weaknesses}
+\begin{itemize}
+\item \textbf{Over-simplification}\\
+Due to the difficulties of solving three-dimensional PDEs, we finally
+choose a two-dimensional model to simplify the problem. Though the
+results given by the model is convincing, it will be better to use a
+more complete and reliable model.
+\item \textbf{}\\
+\ldots
 \end{itemize}
 
 \begin{thebibliography}{99}
 %\addcontentsline{toc}{section}{References}
-\bibitem{1} D.~E. KNUTH   The \TeX{}book  the American
-Mathematical Society and Addison-Wesley
-Publishing Company , 1984-1986.
-\bibitem{2}Lamport, Leslie,  \LaTeX{}: `` A Document Preparation System '',
-Addison-Wesley Publishing Company, 1986.
-\bibitem{3}\url{http://www.latexstudio.net/}
-\bibitem{4}\url{http://www.chinatex.org/}
+\bibitem{1} D.~E. Knuth. The \TeX{}book, Computer \& Typesetting, volume A.
+Addison-Wesley, 1986.
+\bibitem{2} Leslie Lamport, \LaTeX{}: A Document Preparation System.
+Addison-Wesley, 1986.
+\bibitem{3} \LaTeX{}Studio: Home page (\emph{in Chinese}). \url{http://www.latexstudio.net/} (Retrieved on 2019.1.1)
+\bibitem{4} China\TeX{}: Home page. \url{http://www.chinatex.org/} (Retrieved on 2019.1.1)
 \end{thebibliography}
 
 \begin{appendices}
@@ -1222,15 +1188,25 @@ Addison-Wesley Publishing Company, 1986.
 
 \lipsum[13]
 
-Here are simulation programmes we used in our model as follow.\\
+Here are simulation results we gained in our model as follow.
 
-\textbf{\textcolor[rgb]{0.98,0.00,0.00}{Input matlab source:}}
-\lstinputlisting[language=Matlab]{./code/mcmthesis-matlab1.m}
+\begin{table}[htbp]
+\small\centering
+\caption{The profit of Tom \& Jerry.}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+               & \multicolumn{2}{c}{Tom} & \multicolumn{2}{c}{Jerry} \\ \cmidrule(l){2-5} 
+               & Food       & Drink      & Food        & Drink       \\ \midrule
+Revenue $(A)$  & 1,089      & 1,313      & 1,834       & 1,262       \\
+Costs $(B)$    & 338        & 407        & 1,265       & 808         \\
+Profit $(A-B)$ & 751        & 906        & 569         & 454         \\ \bottomrule
+\end{tabular}
+\end{table}
+
 
 \section{Second appendix}
 
-some more text \textcolor[rgb]{0.98,0.00,0.00}{\textbf{Input C++ source:}}
-\lstinputlisting[language=C++]{./code/mcmthesis-sudoku.cpp}
+\lipsum[14]
 
 \end{appendices}
 \end{document}
