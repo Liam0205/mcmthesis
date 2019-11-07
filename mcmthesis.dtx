@@ -102,7 +102,7 @@ and the derived files             \jobname.cls,
 %</internal>
 %<*driver>
 \ProvidesFile{mcmthesis.dtx}
-  [2019/01/26 v6.2.2 The Thesis Template Designed For MCM/ICM]
+  [2019/11/07 v6.3 The Thesis Template Designed For MCM/ICM]
 \documentclass{ltxdoc}
 \EnableCrossrefs
 \CodelineIndex
@@ -392,6 +392,9 @@ xelatex mcmthesis-demo.tex
 %   \item [6.1] 修复问题。
 %   \item [6.2] 可定制的 headset。
 %   \item [6.2.1] 将默认字号由 |11pt| 修改为 |12pt|。
+%   \item [6.2.2] 新增用于排版备忘录/信件的环境 |memo|。
+%   \item [6.3] 参照 COMAP 官网更新了摘要页样式，并移除了若干与实际竞赛情形不符
+%   合的默认选项与功能（如「标题页」、代码等）。
 % \end{description}
 %
 % \title{\hypertarget{English}{%
@@ -625,6 +628,10 @@ xelatex mcmthesis-demo.tex
 %   \item [6.1] Bugfix.
 %   \item [6.2] Making headset of the Summary Sheet modifible.
 %   \item [6.2.1] Change default fontsize, from |11pt| to |12pt|.
+%   \item [6.2.2] Create |memo| environment for typesetting letters or memos.
+%   \item [6.3] Update the summary sheet to fit the latest version from COMAP.
+%      Remove some useless default settings and modules, including ``titlepage''
+%      and code listing.
 % \end{description}
 %
 % \StopEventually{}
@@ -634,9 +641,9 @@ xelatex mcmthesis-demo.tex
 %<*class>
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{mcmthesis}
-  [2019/01/26 v6.2.2 The Thesis Template Designed For MCM/ICM]
+  [2019/11/07 v6.3 The Thesis Template Designed For MCM/ICM]
 \typeout{The Thesis Template Designed For MCM/ICM}
-\def\MCMversion{v6.2.2}
+\def\MCMversion{v6.3}
 %    \end{macrocode}
 % \subsection{Options}
 %
