@@ -1006,10 +1006,10 @@ xelatex mcmthesis-demo.tex
 %!TEX program = xelatex
 \documentclass{mcmthesis}
 \mcmsetup{CTeX = false,   % 使用 CTeX 套装时，设置为 true
-        tcn = 0000000, problem = A,
-        sheet = true, titleinsheet = true, keywordsinsheet = true,
-        titlepage = true, abstract = true}
+        tcn = 0000000, problem = A, sheet = true,
+        titleinsheet = true, keywordsinsheet = true}
 \usepackage{mathpazo}
+%% \usepackage{mathptmx}  % 将 mathpazo 更换为此，即可用 Times 字体
 \usepackage{lipsum}
 \title{The \LaTeX{} Template for MCM Version \MCMversion}
 \author{\small \href{http://www.latexstudio.net/}
@@ -1032,24 +1032,27 @@ keyword1; keyword2
 %% \memosubject{Happy \TeX{}ing!}
 %% \memodate{\today}
 %% \begin{memo}[Memorandum]
-%%   \lipsum[1-3]
+%%   \lipsum[1-4]
 %% \end{memo}
 %%
 \section{Introduction}
 
 \lipsum[2]
+
+The definition of ``sweet spot'' can be:
 \begin{itemize}
 \item minimizes the discomfort to the hands, or
 \item maximizes the outgoing velocity of the ball.
 \end{itemize}
-We focus exclusively on the second definition.
+We will focus exclusively on the second definition.
 
 \begin{itemize}
-\item the initial velocity and rotation of the ball,
+\item The initial velocity and rotation of the ball,
 \item the initial velocity and rotation of the bat,
 \item the relative position and orientation of the bat and ball, and
 \item the force over time that the hitter hands applies on the handle.
 \end{itemize}
+
 \lipsum[3]
 \begin{itemize}
 \item the angular velocity of the bat,
@@ -1085,22 +1088,23 @@ The proof of theorem.
 \small
 \centering
 \includegraphics[width=12cm]{mcmthesis-aaa.eps}
-\caption{aa} \label{fig:aa}
+\caption{The distribution of temperature inside the boiler} \label{fig:aa}
 \end{figure}
 
-\lipsum[8] \eqref{aa}
-\begin{equation}
-a^2 \label{aa}
+\lipsum[8] See equation \eqref{eq:aa}.
+\begin{equation}\label{eq:aa}
+\Delta u = \left( \frac{ \dif^2 }{ \dif x^2 } +
+           \frac{ \dif^2 }{ \dif y^2 } \right) u = 0
 \end{equation}
 
 
 \[
-  \begin{pmatrix}{*{20}c}
+  \begin{pmatrix}
   {a_{11} } & {a_{12} } & {a_{13} }  \\
   {a_{21} } & {a_{22} } & {a_{23} }  \\
   {a_{31} } & {a_{32} } & {a_{33} }  \\
   \end{pmatrix}
-  = \frac{{Opposite}}{{Hypotenuse}}\cos ^{ - 1} \theta \arcsin \theta
+  = \int_{ 0 }^{ +\infty } \me^{ -\alpha x^2 } \dif x 
 \]
 \lipsum[9]
 
@@ -1117,7 +1121,7 @@ a^2 \label{aa}
   \mathop{{\int\!\!\!\!\!\int\!\!\!\!\!\int}\mkern-28mu
   \bigodot}\limits_{\mkern-15mu\varphi}
   {\mathop {\lim }\limits_{x \to \infty } \frac{{n!}}{{r!\left( {n - r}
-  \right)!}}} \eqno (1)
+  \right)!}}} \eqno (2)
 \]
 
 \section{Calculating and Simplifying the Model  }
@@ -1132,36 +1136,43 @@ a^2 \label{aa}
 \section{Conclusions}
 \lipsum[6]
 
-\section{A Summary}
-\lipsum[6]
-
-\section{Evaluate of the Mode}
-
 \section{Strengths and weaknesses}
 \lipsum[12]
 
 \subsection{Strengths}
 \begin{itemize}
 \item \textbf{Applies widely}\\
-This  system can be used for many types of airplanes, and it also
-solves the interference during  the procedure of the boarding
-airplane,as described above we can get to the  optimization
-boarding time.We also know that all the service is automate.
+This system can be used for many types of airplanes, and it also
+solves the interference during the procedure of the boarding
+airplane, as described above we can get to the optimization
+boarding time. We also know that all the service is automate.
 \item \textbf{Improve the quality of the airport service}\\
 Balancing the cost of the cost and the benefit, it will bring in
-more convenient  for airport and passengers.It also saves many
-human resources for the airline. \item \textbf{}
+more convenient for airport and passengers. It also saves many
+human resources for the airline.
+\item \textbf{Do well in validation}\\
+\ldots
+\end{itemize}
+
+\subsection{Weaknesses}
+\begin{itemize}
+\item \textbf{Over-simplification}\\
+Due to the difficulties of solving three-dimensional PDEs, we finally
+choose a two-dimensional model to simplify the problem. Though the
+results given by the model is convincing, it will be better to use a
+more complete and reliable model.
+\item \textbf{}\\
+\ldots
 \end{itemize}
 
 \begin{thebibliography}{99}
 %\addcontentsline{toc}{section}{References}
-\bibitem{1} D.~E. KNUTH   The \TeX{}book  the American
-Mathematical Society and Addison-Wesley
-Publishing Company , 1984-1986.
-\bibitem{2}Lamport, Leslie,  \LaTeX{}: `` A Document Preparation System '',
-Addison-Wesley Publishing Company, 1986.
-\bibitem{3}\url{http://www.latexstudio.net/}
-\bibitem{4}\url{http://www.chinatex.org/}
+\bibitem{1} D.~E. Knuth. The \TeX{}book, Computer \& Typesetting, volume A.
+Addison-Wesley, 1986.
+\bibitem{2} Leslie Lamport, \LaTeX{}: A Document Preparation System.
+Addison-Wesley, 1986.
+\bibitem{3} \LaTeX{}Studio: Home page (\emph{in Chinese}). \url{http://www.latexstudio.net/} (Retrieved on 2019.1.1)
+\bibitem{4} China\TeX{}: Home page. \url{http://www.chinatex.org/} (Retrieved on 2019.1.1)
 \end{thebibliography}
 
 \begin{appendices}
@@ -1170,11 +1181,25 @@ Addison-Wesley Publishing Company, 1986.
 
 \lipsum[13]
 
-Here are simulation programmes we used in our model as follow.\\
+Here are simulation results we gained in our model as follow.
+
+\begin{table}[htbp]
+\small\centering
+\caption{The profit of Tom \& Jerry.}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+               & \multicolumn{2}{c}{Tom} & \multicolumn{2}{c}{Jerry} \\ \cmidrule(l){2-5} 
+               & Food       & Drink      & Food        & Drink       \\ \midrule
+Revenue $(A)$  & 1,089      & 1,313      & 1,834       & 1,262       \\
+Costs $(B)$    & 338        & 407        & 1,265       & 808         \\
+Profit $(A-B)$ & 751        & 906        & 569         & 454         \\ \bottomrule
+\end{tabular}
+\end{table}
 
 
 \section{Second appendix}
 
+\lipsum[14]
 
 \end{appendices}
 \end{document}
